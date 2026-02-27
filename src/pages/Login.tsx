@@ -2,9 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, Facebook } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useAuth, UserRole } from '../contexts/AuthContext';
 
 export default function Login() {
   const [showPassword, setShowPassword] = React.useState(false);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [role, setRole] = React.useState<UserRole>('customer');
+  const [loading, setLoading] = React.useState(false);
+  const { login } = useAuth();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await login(email, password, role);
+    } catch (error) {
+      console.error('Login failed:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex-1 flex items-center justify-center p-4 md:p-8 bg-slate-50 dark:bg-slate-900">
@@ -36,30 +54,49 @@ export default function Login() {
             <p className="text-slate-500 dark:text-slate-400">Vui lòng nhập thông tin để truy cập hệ thống</p>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">Địa chỉ Email</label>
+              <label className="text-sm font-semibold text-slate-700">Loại tài khoản</label>
+              <select 
+                className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all"
+                value={role || 'customer'}
+                onChange={(e) => setRole(e.target.value as UserRole)}
+              >
+                <option value="customer">Khách hàng</option>
+                <option value="shop">Cửa hàng/Phòng khám</option>
+                <option value="admin">Quản trị viên</option>
+              </select>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-slate-700">Địa chỉ Email</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
                 <input 
-                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all" 
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all" 
                   placeholder="example@carevia.vn" 
-                  type="email" 
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
               <div className="flex justify-between">
-                <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">Mật khẩu</label>
-                <a className="text-xs font-semibold text-[#1a2b4c] dark:text-blue-400 hover:underline" href="#">Quên mật khẩu?</a>
+                <label className="text-sm font-semibold text-slate-700">Mật khẩu</label>
+                <a className="text-xs font-semibold text-[#1a2b4c] hover:underline" href="#">Quên mật khẩu?</a>
               </div>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
                 <input 
-                  className="w-full pl-12 pr-12 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all" 
+                  className="w-full pl-12 pr-12 py-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all" 
                   placeholder="••••••••" 
-                  type={showPassword ? "text" : "password"} 
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
                 <button 
                   type="button"
@@ -71,8 +108,12 @@ export default function Login() {
               </div>
             </div>
 
-            <button className="w-full py-4 bg-[#1a2b4c] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-[0.98]">
-              Đăng nhập ngay
+            <button 
+              type="submit"
+              disabled={loading}
+              className="w-full py-4 bg-[#1a2b4c] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Đang đăng nhập...' : 'Đăng nhập ngay'}
             </button>
 
             <div className="relative flex items-center py-2">
@@ -82,7 +123,7 @@ export default function Login() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <button type="button" className="flex items-center justify-center gap-2 py-3 px-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+              <button type="button" className="flex items-center justify-center gap-2 py-3 px-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
                   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
@@ -91,7 +132,7 @@ export default function Login() {
                 </svg>
                 <span className="text-sm font-semibold">Google</span>
               </button>
-              <button type="button" className="flex items-center justify-center gap-2 py-3 px-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+              <button type="button" className="flex items-center justify-center gap-2 py-3 px-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">
                 <Facebook className="w-5 h-5 text-[#1877F2]" fill="currentColor" />
                 <span className="text-sm font-semibold">Facebook</span>
               </button>
@@ -99,8 +140,8 @@ export default function Login() {
           </form>
 
           <div className="mt-10 text-center">
-            <p className="text-slate-500 dark:text-slate-400 text-sm">
-              Chưa có tài khoản? <Link to="/register" className="text-[#1a2b4c] dark:text-blue-400 font-bold hover:underline ml-1">Đăng ký miễn phí</Link>
+            <p className="text-slate-500 text-sm">
+              Chưa có tài khoản? <Link to="/register" className="text-[#1a2b4c] font-bold hover:underline ml-1">Đăng ký miễn phí</Link>
             </p>
           </div>
         </div>
