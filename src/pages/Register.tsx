@@ -1,50 +1,76 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { User, Mail, Phone, Lock, CheckCircle2 } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { User, Mail, Phone, Lock } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useAuth } from '../lib/authContext';
 
 export default function Register() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    login({ name: name || 'Thành viên mới', email: email || 'member@carevia.vn' });
+    navigate('/home');
+  };
+
+  const handleDemoRegister = () => {
+    login({ name: 'Thành viên mới', email: 'new@carevia.vn' });
+    navigate('/home');
+  };
+
   return (
     <div className="flex-1 flex items-center justify-center p-4 md:p-8 bg-slate-50 dark:bg-slate-900">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="max-w-5xl w-full bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
       >
         {/* Left: Branding */}
-        <div className="hidden md:flex md:w-1/2 bg-[#1a2b4c] items-center justify-center p-12 relative overflow-hidden">
+        <div className="hidden md:flex md:w-1/2 bg-primary items-center justify-center p-12 relative overflow-hidden">
           <div className="relative z-10 text-white">
-            <h1 className="text-4xl font-black leading-tight mb-6">Chăm sóc thú cưng cùng Carevia</h1>
-            <p className="text-slate-300 text-lg mb-10">Hệ thống quản lý sức khỏe thú cưng thông minh, giúp người bạn nhỏ luôn khỏe mạnh.</p>
-            
+            <h1 className="text-4xl font-black leading-tight mb-6">
+              Chăm sóc thú cưng cùng Carevia
+            </h1>
+            <p className="text-slate-300 text-lg mb-10">
+              Hệ thống quản lý sức khỏe thú cưng thông minh, giúp người bạn nhỏ luôn khỏe mạnh.
+            </p>
             <div className="flex items-center gap-4">
               <div className="flex -space-x-3">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-[#1a2b4c] bg-slate-400"></div>
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-primary bg-slate-400" />
                 ))}
               </div>
               <p className="text-sm font-medium">+10,000 người đã đăng ký</p>
             </div>
           </div>
-          <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=2071&auto=format&fit=crop')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=2071&auto=format&fit=crop')] bg-cover bg-center" />
         </div>
 
         {/* Right: Register Form */}
         <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Đăng ký thành viên</h2>
-            <p className="text-slate-500 dark:text-slate-400">Yêu thương thú cưng bằng sự chăm sóc chuyên nghiệp nhất</p>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+              Đăng ký thành viên
+            </h2>
+            <p className="text-slate-500 dark:text-slate-400">
+              Yêu thương thú cưng bằng sự chăm sóc chuyên nghiệp nhất
+            </p>
           </div>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
               <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">Họ và tên</label>
               <div className="relative">
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-                <input 
-                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all" 
-                  placeholder="Nguyễn Văn A" 
-                  type="text" 
+                <input
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="Nguyễn Văn A"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
             </div>
@@ -53,10 +79,12 @@ export default function Register() {
               <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">Email</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-                <input 
-                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all" 
-                  placeholder="example@gmail.com" 
-                  type="email" 
+                <input
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="example@gmail.com"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -65,10 +93,10 @@ export default function Register() {
               <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">Số điện thoại</label>
               <div className="relative">
                 <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-                <input 
-                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all" 
-                  placeholder="0901 234 567" 
-                  type="tel" 
+                <input
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="0901 234 567"
+                  type="tel"
                 />
               </div>
             </div>
@@ -78,10 +106,10 @@ export default function Register() {
                 <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">Mật khẩu</label>
                 <div className="relative">
                   <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-                  <input 
-                    className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all" 
-                    placeholder="••••••••" 
-                    type="password" 
+                  <input
+                    className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                    placeholder="••••••••"
+                    type="password"
                   />
                 </div>
               </div>
@@ -89,30 +117,57 @@ export default function Register() {
                 <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">Nhập lại</label>
                 <div className="relative">
                   <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-                  <input 
-                    className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1a2b4c]/20 focus:border-[#1a2b4c] outline-none transition-all" 
-                    placeholder="••••••••" 
-                    type="password" 
+                  <input
+                    className="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                    placeholder="••••••••"
+                    type="password"
                   />
                 </div>
               </div>
             </div>
 
             <div className="flex items-start gap-3 mt-2">
-              <input type="checkbox" className="mt-1 rounded border-slate-300 text-[#1a2b4c] focus:ring-[#1a2b4c]" id="terms" />
+              <input
+                type="checkbox"
+                className="mt-1 rounded border-slate-300 text-primary focus:ring-primary"
+                id="terms"
+              />
               <label htmlFor="terms" className="text-xs text-slate-600 dark:text-slate-400">
-                Tôi đồng ý với các <a href="#" className="font-bold text-[#2dd4bf] hover:underline">Điều khoản dịch vụ</a> và <a href="#" className="font-bold text-[#2dd4bf] hover:underline">Chính sách bảo mật</a> của Carevia.
+                Tôi đồng ý với các{' '}
+                <a href="#" className="font-bold text-primary hover:underline">
+                  Điều khoản dịch vụ
+                </a>{' '}
+                và{' '}
+                <a href="#" className="font-bold text-primary hover:underline">
+                  Chính sách bảo mật
+                </a>{' '}
+                của Carevia.
               </label>
             </div>
 
-            <button className="w-full py-4 bg-[#1a2b4c] text-white font-bold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-[0.98]">
+            <button
+              type="submit"
+              className="w-full py-4 bg-primary text-white font-bold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-[0.98]"
+            >
               Đăng ký ngay
+            </button>
+
+            <button
+              type="button"
+              onClick={handleDemoRegister}
+              className="w-full py-3 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 font-semibold rounded-lg border border-green-200 dark:border-green-800 hover:bg-green-100 dark:hover:bg-green-900/40 transition-all flex items-center justify-center gap-2"
+            >
+              <span className="material-symbols-outlined text-lg">play_circle</span>
+              Demo — Vào HomePage ngay
             </button>
           </form>
 
           <div className="mt-8 text-center">
             <p className="text-slate-500 dark:text-slate-400 text-sm">
-              Bạn đã có tài khoản? <Link to="/login" className="text-[#2dd4bf] font-bold hover:underline ml-1">Đăng nhập tại đây</Link>
+              Bạn đã có tài khoản?{' '}
+              <Link to="/login" className="text-primary font-bold hover:underline ml-1">
+                Đăng nhập tại đây
+              </Link>
             </p>
           </div>
         </div>
