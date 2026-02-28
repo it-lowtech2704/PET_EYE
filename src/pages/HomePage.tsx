@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/authContext';
+import Logo from '../components/Logo';
 
 const DEALS = [
     {
@@ -98,7 +99,7 @@ export default function HomePage() {
             {/* Top Banner */}
             <div className="bg-primary text-white py-2 text-sm text-center font-medium">
                 <div className="container mx-auto px-4 flex justify-between items-center">
-                    <span className="hidden md:inline">Chào mừng bạn đến với Carevia!</span>
+                    <span className="hidden md:inline">Chào mừng bạn đến với Peteye!</span>
                     <span>
                         Hotline hỗ trợ 24/7:{' '}
                         <a className="underline hover:text-slate-200" href="tel:19001234">
@@ -116,11 +117,8 @@ export default function HomePage() {
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         {/* Logo */}
-                        <Link to="/home" className="flex items-center gap-2 flex-shrink-0">
-                            <span className="material-symbols-outlined text-primary text-4xl">pets</span>
-                            <span className="text-2xl font-display font-bold text-primary dark:text-white tracking-tight">
-                                Carevia
-                            </span>
+                        <Link to="/home" className="flex-shrink-0">
+                            <Logo />
                         </Link>
 
                         {/* Search */}
@@ -208,7 +206,7 @@ export default function HomePage() {
                             </div>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-slate-800 dark:text-white leading-tight">
                                 Chăm sóc thú cưng <br />
-                                <span className="text-primary">dễ dàng hơn</span> cùng Carevia
+                                <span className="text-primary">dễ dàng hơn</span> cùng Peteye
                             </h1>
                             <p className="text-lg text-slate-600 dark:text-slate-300 md:pr-10 leading-relaxed">
                                 Kết nối ngay với hàng ngàn bác sĩ thú y, spa, và cửa hàng thú cưng uy tín. Chúng tôi
@@ -293,47 +291,66 @@ export default function HomePage() {
             </section>
 
             {/* Services Section */}
-            <section className="py-16 bg-slate-50 dark:bg-slate-900">
+            <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <span className="text-primary font-bold tracking-wider uppercase text-sm">
-                            Dịch vụ Carevia
+                    <div className="text-center mb-16">
+                        <span className="text-primary font-bold tracking-wider uppercase text-sm bg-primary/10 px-4 py-1.5 rounded-full inline-block mb-4">
+                            Dịch vụ Peteye
                         </span>
-                        <h2 className="text-3xl font-display font-bold text-slate-800 dark:text-white mt-2">
+                        <h2 className="text-4xl font-display font-black text-slate-800 dark:text-white mt-2">
                             Giải pháp toàn diện
                         </h2>
+                        <p className="text-slate-500 dark:text-slate-400 mt-4 max-w-2xl mx-auto">
+                            Hệ sinh thái dịch vụ đa dạng, đáp ứng mọi nhu cầu chăm sóc sức khỏe và làm đẹp cho thú cưng của bạn.
+                        </p>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {[
                             {
-                                src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDR64HLiSz2wPiRmZ-EPojuO1frxUrtU1nnr5EaEjlhLn75Dxebvgstw4zJ60_i6VMViebCXN1d549gmMXsQ-1vrQ898dTWYgyzvJRWbnftpruaFnqxFicr51q0wL3YjztYfhwtskotqzcSH4j783sN3fZGW_jGkuVI1oSK5BFw4glLbIHMCyZXMt0p90Owgroouo8pbX1dNuLheyhdMPsMIOA-k4oHhIyyxTAsK4KB_POf-IzmFSP7wrCewMTRsOi84p6uXesfKeoP',
+                                icon: 'medical_services',
                                 label: 'Khám thú y',
+                                desc: 'Đội ngũ bác sĩ chuyên môn cao, cơ sở vật chất hiện đại chuẩn quốc tế.',
+                                bg: 'bg-blue-50 dark:bg-blue-900/20',
+                                color: 'text-blue-600 dark:text-blue-400',
                             },
                             {
-                                src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAYgER103Sq6vNT99iOmuJHTXteHJthynx2qiIJoUiwHNrhUsCsLh4wcRvsI5-Qyss68eMgsgNYE6T8Hz_4-BkqbV35ssv17FZTNGrAkc1Y0aRpvuc23t9KVERRBfZDK_H-bc6xbY3diHUiW_f9XWlVcvwolCY_mRcGgjBOwqz0GOKD9Aij-XPfni7r5Lr8zhOWMANDEYjtzhN9jpfqeVX3F6Y-SgFEaQiTo8ZYtD0VZHA98CkCnk8ZicYWJar84pqQ1w5zHQMqSROK',
+                                icon: 'hotel',
                                 label: 'Lưu trú (Hotel)',
+                                desc: 'Không gian thoải mái, an toàn, chăm sóc tận tình 24/7 khi bạn vắng nhà.',
+                                bg: 'bg-rose-50 dark:bg-rose-900/20',
+                                color: 'text-rose-600 dark:text-rose-400',
                             },
                             {
-                                src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDrIOZXfafmYEOHDGLIPoeCxe9cbZd5roc-n70ytnaNqXDuFN9pv5GOkCVeKYsYdz3BPGPxo6cIFu7N8Hv2CD1wQ7PJ-fpv4V88A3tD5gGFHDCT3scBwdkQxV0xWzgmaG9ou2zvJGYYof6wrodQmiAXXMinPjPsH-GsbvjHROXcSfS4qnfTbjjmpnLeks_GpDEB-Upa8UIJC8b8kBJGtESpQzKxsZTZciw0o3GGgAVI-dNpedfZKWpOg9lmsarGaJOp2xfF-lBEEcj8',
+                                icon: 'content_cut',
                                 label: 'Spa & Grooming',
+                                desc: 'Dịch vụ tắm sấy, cắt tỉa tạo kiểu chuyên nghiệp giúp bé luôn xinh xắn.',
+                                bg: 'bg-purple-50 dark:bg-purple-900/20',
+                                color: 'text-purple-600 dark:text-purple-400',
                             },
                             {
-                                src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBjxx8nSIblC9KeXcOTU-XDziCzEE8UedjikMoRb12yEUPrzLZVdmEKTifV7EYKYQfHIYeV86zJZTNDUxNSvMB-FBUUgflVjCTwUNHjKw9N8gmZo9hocpJrehTsE9847c_rGlArYNex3UIjHz3F46rYI2jmw1chTRuXqrYTGcyWoCMwxuYC6EaWD3SneJu8Yrzp4C433_Vb5i9w7yzZsNFXg--MxygNNoipR-cdGi1gsIDgkkF0eJmFs7UeeKBWBoG71CZn4OzcSbNS',
+                                icon: 'shopping_bag',
                                 label: 'Pet Shop',
+                                desc: 'Cung cấp thức ăn, phụ kiện, đồ chơi chính hãng, chất lượng hàng đầu.',
+                                bg: 'bg-amber-50 dark:bg-amber-900/20',
+                                color: 'text-amber-600 dark:text-amber-400',
                             },
-                        ].map(({ src, label }) => (
-                            <a key={label} className="group flex flex-col items-center" href="#">
-                                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-blue-50 dark:bg-slate-800 border-2 border-transparent group-hover:border-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-105 transition-all duration-300 shadow-md overflow-hidden">
-                                    <img
-                                        alt={label}
-                                        className="w-12 h-12 md:w-16 md:h-16 object-contain filter group-hover:brightness-0 group-hover:invert transition-all"
-                                        src={src}
-                                    />
+                        ].map(({ icon, label, desc, bg, color }) => (
+                            <div key={label} className="group cursor-pointer bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700 hover:border-primary/30 hover:-translate-y-2 relative overflow-hidden z-10">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                                <div className={`w-16 h-16 rounded-2xl ${bg} ${color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                                    <span className="material-symbols-outlined text-3xl">{icon}</span>
                                 </div>
-                                <h3 className="font-bold text-slate-700 dark:text-slate-200 text-lg group-hover:text-primary transition-colors">
+                                <h3 className="font-bold text-slate-900 dark:text-white text-xl mb-3 group-hover:text-primary transition-colors">
                                     {label}
                                 </h3>
-                            </a>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                                    {desc}
+                                </p>
+                                <div className="flex items-center text-primary font-semibold text-sm group/btn">
+                                    Khám phá ngay
+                                    <span className="material-symbols-outlined text-sm ml-1 group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -347,7 +364,7 @@ export default function HomePage() {
                         <div className="md:col-span-2 relative h-[300px] rounded-2xl overflow-hidden group bg-blue-100 dark:bg-blue-900/40">
                             <div className="absolute inset-0 z-10 p-8 flex flex-col justify-center items-start w-2/3">
                                 <span className="bg-primary/10 dark:bg-primary/20 text-primary dark:text-blue-300 px-3 py-1 rounded-md text-xs font-bold mb-3 uppercase border border-primary/20">
-                                    Độc quyền Carevia
+                                    Độc quyền Peteye
                                 </span>
                                 <h3 className="text-3xl font-display font-bold text-slate-800 dark:text-white mb-2">
                                     Live Camera 24/7
@@ -469,7 +486,7 @@ export default function HomePage() {
                                 </span>
                             </h2>
                             <p className="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
-                                Carevia không chỉ là nơi kết nối, mà là hệ sinh thái chăm sóc sức khỏe và đời sống
+                                Peteye không chỉ là nơi kết nối, mà là hệ sinh thái chăm sóc sức khỏe và đời sống
                                 tinh thần cho thú cưng. Chúng tôi cam kết mang lại sự an tâm tuyệt đối cho bạn với
                                 chuẩn mực chuyên nghiệp.
                             </p>
@@ -594,12 +611,7 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                         {/* Brand */}
                         <div className="space-y-4">
-                            <div className="flex items-center gap-2">
-                                <span className="material-symbols-outlined text-primary text-3xl">pets</span>
-                                <span className="text-2xl font-display font-bold text-primary dark:text-white tracking-tight">
-                                    Carevia
-                                </span>
-                            </div>
+                            <Logo />
                             <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
                                 Nền tảng kết nối chủ nuôi với cơ sở thú y và pet shop uy tín hàng đầu.
                             </p>
@@ -649,7 +661,7 @@ export default function HomePage() {
 
                         {/* About */}
                         <div>
-                            <h3 className="font-bold text-slate-800 dark:text-white mb-6">Về Carevia</h3>
+                            <h3 className="font-bold text-slate-800 dark:text-white mb-6">Về Peteye</h3>
                             <ul className="space-y-3 text-slate-500 dark:text-slate-400 text-sm">
                                 {['Câu chuyện thương hiệu', 'Tuyển dụng', 'Trở thành đối tác', 'Tin tức & Sự kiện'].map(
                                     (s) => (
@@ -684,7 +696,7 @@ export default function HomePage() {
                     </div>
 
                     <div className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                        <p>© 2025 Carevia Platform. All rights reserved.</p>
+                        <p>© 2025 Peteye Platform. All rights reserved.</p>
                         <div className="flex gap-6">
                             <a className="hover:text-slate-600 dark:hover:text-slate-300" href="#">
                                 Điều khoản sử dụng

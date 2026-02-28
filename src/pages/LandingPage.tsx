@@ -2,9 +2,20 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, MapPin, Video, Star, ArrowRight, CheckCircle2, PawPrint } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useAuth } from '../lib/authContext';
 
 export default function Home() {
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const handleAction = (target: string) => {
+    if (user) {
+      navigate(target);
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <main className="flex-1">
       <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24 relative overflow-hidden">
@@ -64,7 +75,7 @@ export default function Home() {
                 </div>
                 <div className="md:col-span-2">
                   <button
-                    onClick={() => navigate('/search')}
+                    onClick={() => handleAction('/search')}
                     className="w-full h-full bg-primary hover:bg-primary-dark text-white rounded-xl font-bold transition-all shadow-md flex items-center justify-center gap-2 py-3 md:py-0">
                     <span className="material-symbols-outlined">search</span>
                     Tìm
@@ -118,10 +129,10 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8"><div className="md:col-span-2 group cursor-pointer relative overflow-hidden rounded-3xl h-[500px]"><img alt="Clinic Main" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6oXx_u1YVkdtHjYoh6Uu-kfGetga5JcROKee0xBg0hPSb0nHqmv9q1JJu8YROnoKvG5Rd_bysvhxgJTHT8gH8C1Llbpf5--FuheT1Dc9hv4rtG8lTcWHtEGUjbj2MpdlQP2hpldAuE40DUdWZ5Z7eM4tObng5CiSzz7ne0hg8w9405R8Wc2x5clkCvRirQBvDr-ensgay-LOftIuu8I5VwOc7-thTZBLPKZN7Bm_3uz0oHqruBNy2vs0BxZyVnMQweUikfcPmoio6" /><div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div><div className="absolute bottom-8 left-8 text-white"><h4 className="text-2xl font-bold mb-2">Phòng khám PetCare Center</h4><p className="flex items-center gap-2 text-sm opacity-90"><span className="material-symbols-outlined text-sm">location_on</span> Quận 3, TP.HCM</p></div><div className="absolute top-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-primary text-xs font-bold">Nổi bật</div><div className="absolute top-6 right-6 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg"><span className="material-symbols-outlined text-sm">videocam</span> LIVE CAM</div></div><div className="flex flex-col gap-8"><div className="group cursor-pointer relative overflow-hidden rounded-3xl h-[234px]"><img alt="Spa" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvn1YtjFBMSi4BphgW3hjCSM6BCxf1oce1KeKpXttIwyWe48GkVnDpaLzr_bNQaMzsvLy5p2nPC9HmtWou4i3TVlf_Nelmpv5cNPy104dfmz7Rl95wzFUKvCtsoUl1DpmVw5daIRIyBCWWTUR0uGC1J_e6BZxYxOYJpXgBLI88T7WZ9-2H6HRISfkBhXXtPLueH3-WefnxIcv9glH9oUKN8KkpTYnRgRhevVVNoHGtPeaU6uk6xH4Lv3anZqKWG7UIks1wxxFzj8PR" /><div className="absolute inset-0 bg-black/20"></div><div className="absolute bottom-6 left-6 text-white"><h4 className="text-lg font-bold">Happy Paws Spa</h4></div></div><div className="group cursor-pointer relative overflow-hidden rounded-3xl h-[234px]"><img alt="Saigon Vet" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsGAK-5F_vJwGvWXgRo6_kZwaYacit8LWb4QQfRBlZGt_wA_cq9gJFqPZdsR9mlQuErE2dFpjpOMLfBvr1BNomlaCYcq4Tw9HEfWScR2Vrx6C8qOfhNv69Ase7UkBfozjR-LpeW-k6RCQfzqP90asSMtvCppGS7_nktV4ODNBXx12BlIb3NrwIgAVMWGPgQ5-bDty1cGAbHN4Nhc3gdQVbyPo2U9Hw6aJNN80N-7TEqIvc8U_dv7QAK3L7yCYDWz6_RhmhFzeL0Vhn" /><div className="absolute inset-0 bg-black/20"></div><div className="absolute bottom-6 left-6 text-white"><h4 className="text-lg font-bold">Saigon Vet Hospital</h4></div></div></div></div>
           <div className="mt-12 text-center">
-            <Link to="/search" className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-8 py-3 rounded-full font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+            <button onClick={() => handleAction('/search')} className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-8 py-3 rounded-full font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
               Xem tất cả cơ sở
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -135,7 +146,7 @@ export default function Home() {
                   <div className="w-3 h-3 rounded-full bg-red-400"></div>
                   <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                   <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                  <div className="mx-auto text-xs font-mono text-slate-400">Live Camera - Carevia</div>
+                  <div className="mx-auto text-xs font-mono text-slate-400">Live Camera - Peteye</div>
                 </div>
                 <div className="w-full h-full pt-10 relative bg-slate-900">
                   <img alt="Live Camera Interface with happy dog playing" className="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9-35MViKaTiKljoxOmZsNMQsboCLHaLrz2PUbxxOI80nLHSGmxaJKNAn8X_0gGNjQEcBvSfGr4_e_mJZySSPXSbNUVQapgf9fCy_2R-inc7_nRiBJFVRuhVPO0nlXZaaRWq-H6Cu2UgqjqAL0L30F8l1U1EaZOqnDed3AdG17Ry_vWTMGgSrKdG6L4uYXOs2BKFVjimLyV9_9UuVVlBgnVADeX6s03BDtyEy-R6P8imZf_DNIRUDCYhPHK2pZZkQesoQZJTT_NWn3" />
@@ -168,7 +179,7 @@ export default function Home() {
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Live Camera 24/7</span>
                 </h2>
                 <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Độc quyền tại Carevia - Kết nối trực tiếp với thú cưng của bạn mọi lúc, mọi nơi khi gửi tại các đối tác có hỗ trợ camera của chúng tôi.
+                  Độc quyền tại Peteye - Kết nối trực tiếp với thú cưng của bạn mọi lúc, mọi nơi khi gửi tại các đối tác có hỗ trợ camera của chúng tôi.
                 </p>
               </div>
               <div className="grid sm:grid-cols-2 gap-6">
@@ -201,10 +212,10 @@ export default function Home() {
                 </div>
               </div>
               <div className="pt-4">
-                <Link to="/search" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/30 text-white px-8 py-4 rounded-full font-bold transition-all hover:-translate-y-1 flex items-center gap-2 group w-fit">
+                <button onClick={() => handleAction('/home')} className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/30 text-white px-8 py-4 rounded-full font-bold transition-all hover:-translate-y-1 flex items-center gap-2 group w-fit">
                   Tìm cơ sở có Camera
                   <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -214,7 +225,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24 space-y-4">
             <h2 className="text-slate-900 dark:text-white text-4xl font-bold">Quy trình kết nối</h2>
-            <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-lg">Cách Carevia kết nối bạn với dịch vụ tốt nhất</p>
+            <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-lg">Cách Peteye kết nối bạn với dịch vụ tốt nhất</p>
           </div>
           <div className="relative grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 z-0">
@@ -264,7 +275,7 @@ export default function Home() {
       <section className="bg-primary/5 dark:bg-slate-900/80 px-6 md:px-12 lg:px-20 py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-slate-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">Tại sao chọn Carevia?</h2>
+            <h2 className="text-slate-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">Tại sao chọn Peteye?</h2>
             <p className="text-slate-500 dark:text-slate-400">Giá trị mang lại cho cả hai phía</p>
           </div>
           <div className="grid md:grid-cols-2 gap-12">
@@ -344,7 +355,7 @@ export default function Home() {
                 <div className="bg-slate-50 dark:bg-card-dark p-8 rounded-3xl shadow-soft hover:shadow-hover transition-all duration-300 relative group">
                   <span className="absolute top-8 left-6 text-6xl text-primary/10 font-serif leading-none">"</span>
                   <div className="relative z-10 pl-6">
-                    <p className="text-slate-600 dark:text-slate-300 mb-6 text-lg italic leading-relaxed">"Tìm được phòng khám 24/7 ngay gần nhà lúc nửa đêm nhờ Carevia. Ứng dụng cứu cánh thực sự cho những người nuôi mèo như mình."</p>
+                    <p className="text-slate-600 dark:text-slate-300 mb-6 text-lg italic leading-relaxed">"Tìm được phòng khám 24/7 ngay gần nhà lúc nửa đêm nhờ Peteye. Ứng dụng cứu cánh thực sự cho những người nuôi mèo như mình."</p>
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 rounded-full bg-slate-300 border-2 border-primary"></div>
                       <div>
@@ -364,7 +375,7 @@ export default function Home() {
                 <div className="bg-slate-50 dark:bg-card-dark p-8 rounded-3xl shadow-soft hover:shadow-hover transition-all duration-300 relative group ml-8 opacity-90 hover:opacity-100">
                   <span className="absolute top-8 left-6 text-6xl text-primary/10 font-serif leading-none">"</span>
                   <div className="relative z-10 pl-6">
-                    <p className="text-slate-600 dark:text-slate-300 mb-6 text-lg italic leading-relaxed">"Hệ thống quản lý lịch hẹn của Carevia giúp phòng khám của tôi giảm thiểu tình trạng khách quên lịch và tối ưu hóa thời gian làm việc."</p>
+                    <p className="text-slate-600 dark:text-slate-300 mb-6 text-lg italic leading-relaxed">"Hệ thống quản lý lịch hẹn của Peteye giúp phòng khám của tôi giảm thiểu tình trạng khách quên lịch và tối ưu hóa thời gian làm việc."</p>
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 rounded-full bg-slate-300 border-2 border-secondary"></div>
                       <div>

@@ -39,8 +39,8 @@ export function ProfileLayout({ children }: { children?: React.ReactNode }) {
                     key={item.path}
                     to={item.path}
                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isActive
-                        ? 'bg-[#e0f7f9] text-[#1a2b4c] shadow-sm dark:bg-teal-900/30 dark:text-teal-300'
-                        : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
+                      ? 'bg-[#e0f7f9] text-[#1a2b4c] shadow-sm dark:bg-teal-900/30 dark:text-teal-300'
+                      : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                       }`}
                   >
                     <span className="material-symbols-outlined text-xl">{item.icon}</span>
@@ -69,7 +69,7 @@ export function ProfileLayout({ children }: { children?: React.ReactNode }) {
               <span className="material-symbols-outlined text-[#1a2b4c] dark:text-teal-400 text-2xl">workspace_premium</span>
             </div>
             <p className="text-slate-500 dark:text-slate-400 text-xs font-medium">Cấp thành viên</p>
-            <h3 className="text-xl font-extrabold text-slate-900 dark:text-slate-100 mt-1">Carevia Gold</h3>
+            <h3 className="text-xl font-extrabold text-slate-900 dark:text-slate-100 mt-1">Peteye Gold</h3>
             <div className="mt-6 flex items-center justify-between">
               <div>
                 <p className="text-slate-500 dark:text-slate-400 text-xs font-medium">Số lịch hẹn</p>
@@ -213,7 +213,7 @@ export default function Profile() {
               </div>
             </div>
             <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
-              <p className="text-xs text-slate-500 max-w-xs">Dữ liệu cá nhân của bạn được mã hóa và bảo mật theo chính sách riêng tư của Carevia.</p>
+              <p className="text-xs text-slate-500 max-w-xs">Dữ liệu cá nhân của bạn được mã hóa và bảo mật theo chính sách riêng tư của Peteye.</p>
               <div className="flex gap-3">
                 <button type="button" className="px-6 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all text-sm">Hủy</button>
                 <button type="submit" className="bg-[#1a2b4c] px-8 py-2.5 rounded-xl text-white font-bold shadow-lg shadow-[#1a2b4c]/20 hover:opacity-90 active:scale-[0.98] transition-all text-sm">Lưu thay đổi</button>
@@ -225,7 +225,7 @@ export default function Profile() {
         {/* Quick info cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
-            { icon: 'health_and_safety', label: 'Bảo hiểm đang hoạt động', value: 'Carevia Plus (2 thú cưng)', color: 'text-blue-500', bg: 'bg-blue-50 dark:bg-blue-900/20' },
+            { icon: 'health_and_safety', label: 'Bảo hiểm đang hoạt động', value: 'Peteye Plus (2 thú cưng)', color: 'text-blue-500', bg: 'bg-blue-50 dark:bg-blue-900/20' },
             { icon: 'payments', label: 'Thanh toán mặc định', value: 'Visa kết thúc bằng •••• 4242', color: 'text-purple-500', bg: 'bg-purple-50 dark:bg-purple-900/20' },
           ].map(c => (
             <div key={c.label} className="bg-white dark:bg-slate-900 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-center gap-4">

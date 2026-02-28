@@ -367,7 +367,7 @@ export default function ClinicDetail() {
                 </div>
                 <h3 className="text-2xl font-bold leading-tight">Quan sát thú cưng từ xa</h3>
                 <p className="text-slate-300 text-sm">
-                  Đặt lịch dịch vụ lưu trú và theo dõi bé yêu mọi lúc mọi nơi thông qua ứng dụng Carevia.
+                  Đặt lịch dịch vụ lưu trú và theo dõi bé yêu mọi lúc mọi nơi thông qua ứng dụng Peteye.
                 </p>
                 <button className="w-fit mt-2 px-5 py-2.5 bg-white text-slate-900 rounded-lg font-bold text-sm hover:bg-slate-100 transition-colors shadow-lg">
                   Tải App Ngay

@@ -222,8 +222,8 @@ export default function Payment() {
                                         key={m.id}
                                         onClick={() => setPayMethod(m.id)}
                                         className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${payMethod === m.id
-                                                ? 'border-[#1a2b4c] bg-[#1a2b4c]/5 dark:border-teal-400 dark:bg-teal-900/10'
-                                                : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
+                                            ? 'border-[#1a2b4c] bg-[#1a2b4c]/5 dark:border-teal-400 dark:bg-teal-900/10'
+                                            : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
                                             }`}
                                     >
                                         <span className={`material-symbols-outlined text-2xl ${payMethod === m.id ? 'text-[#1a2b4c] dark:text-teal-400' : 'text-slate-400'}`}>
@@ -357,7 +357,7 @@ export default function Payment() {
                                 <a href="#" className="text-[#1a2b4c] dark:text-teal-400 font-semibold hover:underline">Điều khoản dịch vụ</a>
                                 {' '}và{' '}
                                 <a href="#" className="text-[#1a2b4c] dark:text-teal-400 font-semibold hover:underline">Chính sách hoàn tiền</a>
-                                {' '}của Carevia.
+                                {' '}của Peteye.
                             </span>
                         </label>
                     </div>
@@ -396,7 +396,7 @@ export default function Payment() {
                             <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-3 space-y-2 text-xs text-slate-500 dark:text-slate-400">
                                 <div className="flex items-center gap-2">
                                     <span className="material-symbols-outlined text-sm text-green-500">verified_user</span>
-                                    Đặt lịch được bảo đảm bởi Carevia
+                                    Đặt lịch được bảo đảm bởi Peteye
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <span className="material-symbols-outlined text-sm text-blue-500">undo</span>

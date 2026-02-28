@@ -32,7 +32,7 @@ export default function Register() {
         <div className="hidden md:flex md:w-1/2 bg-primary items-center justify-center p-12 relative overflow-hidden">
           <div className="relative z-10 text-white">
             <h1 className="text-4xl font-black leading-tight mb-6">
-              Chăm sóc thú cưng cùng Carevia
+              Chăm sóc thú cưng cùng Peteye
             </h1>
             <p className="text-slate-300 text-lg mb-10">
               Hệ thống quản lý sức khỏe thú cưng thông minh, giúp người bạn nhỏ luôn khỏe mạnh.
@@ -141,7 +141,7 @@ export default function Register() {
                 <a href="#" className="font-bold text-primary hover:underline">
                   Chính sách bảo mật
                 </a>{' '}
-                của Carevia.
+                của Peteye.
               </label>
             </div>
 

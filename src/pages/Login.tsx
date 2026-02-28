@@ -40,7 +40,7 @@ export default function Login() {
               />
             </div>
             <h1 className="text-3xl font-bold text-[#1a2b4c] dark:text-white mb-4">
-              Chào mừng bạn tới Carevia
+              Chào mừng bạn tới Peteye
             </h1>
             <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">
               Nơi thú cưng của bạn được chăm sóc như gia đình.
