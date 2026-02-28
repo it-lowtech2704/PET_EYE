@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <main className="flex-1">
-      <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24 relative overflow-hidden">
+      <section id="hero" className="px-6 md:px-12 lg:px-20 py-16 md:py-24 relative overflow-hidden">
         <div className="pattern-dots absolute inset-0 opacity-40 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
           <div className="flex flex-col gap-8 order-2 lg:order-1">
@@ -118,7 +118,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-slate-50 dark:bg-slate-900/50 px-6 md:px-12 lg:px-20 py-24 relative">
+      <section id="co-so" className="bg-slate-50 dark:bg-slate-900/50 px-6 md:px-12 lg:px-20 py-24 relative">
         <div className="absolute top-20 left-10 text-slate-200 dark:text-slate-800 opacity-50 rotate-[-15deg]">
           <span className="material-symbols-outlined text-9xl">pets</span>
         </div>
@@ -136,7 +136,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-900 dark:to-slate-800 px-6 md:px-12 lg:px-20 py-24">
+      <section id="camera" className="relative overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-900 dark:to-slate-800 px-6 md:px-12 lg:px-20 py-24">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 relative group">
@@ -272,7 +272,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-primary/5 dark:bg-slate-900/80 px-6 md:px-12 lg:px-20 py-24 relative overflow-hidden">
+      <section id="ly-do" className="bg-primary/5 dark:bg-slate-900/80 px-6 md:px-12 lg:px-20 py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-slate-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">Tại sao chọn Peteye?</h2>
@@ -346,7 +346,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-white dark:bg-slate-900 px-6 md:px-12 lg:px-20 py-24 overflow-hidden relative">
+      <section id="cong-dong" className="bg-white dark:bg-slate-900 px-6 md:px-12 lg:px-20 py-24 overflow-hidden relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>

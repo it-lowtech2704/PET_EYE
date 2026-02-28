@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Logo({ className = '' }: { className?: string }) {
+export default function Logo({ className = '', lightText = false }: { className?: string, lightText?: boolean }) {
     return (
         <div className={`flex items-center gap-2.5 text-primary group ${className}`}>
             <div className="size-10 relative flex-shrink-0">
@@ -26,7 +26,7 @@ export default function Logo({ className = '' }: { className?: string }) {
                     </svg>
                 </div>
             </div>
-            <h2 className="text-slate-900 dark:text-white text-2xl font-extrabold tracking-tight">Peteye</h2>
+            <h2 className={`${lightText ? 'text-white' : 'text-slate-900 dark:text-white'} text-2xl font-extrabold tracking-tight`}>Peteye</h2>
         </div>
     );
 }

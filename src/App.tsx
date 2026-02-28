@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate, Link } from 'react-router-dom';
 import { AuthProvider, useAuth } from './lib/authContext';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Logo from './components/Logo';
 import Home from './pages/LandingPage';
 import HomePage from './pages/HomePage';
@@ -19,10 +20,11 @@ import Payment from './pages/Payment';
 import ProfilePets from './pages/ProfilePets';
 import ProfileSecurity from './pages/ProfileSecurity';
 import ProfileNotifications from './pages/ProfileNotifications';
+import CameraView from './pages/CameraView';
 
 // Routes where the global Navbar + Footer should be hidden
 // (these pages manage their own header/layout)
-const STANDALONE_ROUTES = ['/home'];
+const STANDALONE_ROUTES = ['/home', '/camera'];
 
 function AppLayout() {
   const location = useLocation();
@@ -53,6 +55,7 @@ function AppLayout() {
           <Route path="/pet/:id" element={<PetProfile />} />
           <Route path="/messages" element={<Messaging />} />
           <Route path="/live" element={<LiveTracking />} />
+          <Route path="/camera" element={<CameraView />} />
           <Route path="/search" element={<VetSearch />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/profile" element={<Profile />} />
@@ -64,68 +67,7 @@ function AppLayout() {
         </Routes>
       </main>
 
-      {/* Global Footer — only shown on non-standalone routes */}
-      {!isStandalone && (
-        <footer className="bg-slate-900 text-slate-300 px-6 md:px-12 lg:px-20 py-20 border-t border-slate-800">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-            <div className="space-y-6">
-              <Link to="/home"><Logo /></Link>
-              <p className="text-sm leading-relaxed text-slate-400">Nền tảng kết nối dịch vụ thú y hàng đầu Việt Nam. Tận tâm vì sức khỏe thú cưng của bạn.</p>
-              <div className="flex gap-3">
-                <a className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:-translate-y-1" href="#"><span className="material-symbols-outlined text-lg">public</span></a>
-                <a className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:-translate-y-1" href="#"><span className="material-symbols-outlined text-lg">mail</span></a>
-                <a className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:-translate-y-1" href="#"><span className="material-symbols-outlined text-lg">call</span></a>
-              </div>
-            </div>
-            <div>
-              <h5 className="text-white font-bold mb-6 text-lg">Liên kết nhanh</h5>
-              <ul className="space-y-4 text-sm">
-                <li><a className="hover:text-primary transition-colors flex items-center gap-2" href="#"><span className="w-1.5 h-1.5 rounded-full bg-slate-600" /> Về chúng tôi</a></li>
-                <li><a className="hover:text-primary transition-colors flex items-center gap-2" href="#"><span className="w-1.5 h-1.5 rounded-full bg-slate-600" /> Dành cho đối tác</a></li>
-                <li><a className="hover:text-primary transition-colors flex items-center gap-2" href="#"><span className="w-1.5 h-1.5 rounded-full bg-slate-600" /> Tin tức thú cưng</a></li>
-                <li><a className="hover:text-primary transition-colors flex items-center gap-2" href="#"><span className="w-1.5 h-1.5 rounded-full bg-slate-600" /> Câu hỏi thường gặp</a></li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-white font-bold mb-6 text-lg">Dịch vụ</h5>
-              <ul className="space-y-4 text-sm">
-                <li><a className="hover:text-primary transition-colors flex items-center gap-2" href="#"><span className="w-1.5 h-1.5 rounded-full bg-slate-600" /> Khám bệnh</a></li>
-                <li><a className="hover:text-primary transition-colors flex items-center gap-2" href="#"><span className="w-1.5 h-1.5 rounded-full bg-slate-600" /> Tiêm chủng</a></li>
-                <li><a className="hover:text-primary transition-colors flex items-center gap-2" href="#"><span className="w-1.5 h-1.5 rounded-full bg-slate-600" /> Lưu trú thú cưng</a></li>
-                <li><a className="hover:text-primary transition-colors flex items-center gap-2" href="#"><span className="w-1.5 h-1.5 rounded-full bg-slate-600" /> Spa &amp; Làm đẹp</a></li>
-              </ul>
-            </div>
-            <div className="space-y-6">
-              <h5 className="text-white font-bold mb-6 text-lg">Liên hệ</h5>
-              <div className="flex items-start gap-4 text-sm group">
-                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <span className="material-symbols-outlined text-lg">location_on</span>
-                </div>
-                <p className="flex-1 pt-1">123 Đường Thú Cưng, Quận 1, TP. Hồ Chí Minh</p>
-              </div>
-              <div className="flex items-center gap-4 text-sm group">
-                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <span className="material-symbols-outlined text-lg">call</span>
-                </div>
-                <p className="pt-1 font-bold text-white">1900 123 456</p>
-              </div>
-              <div className="flex items-center gap-4 text-sm group">
-                <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <span className="material-symbols-outlined text-lg">mail</span>
-                </div>
-                <p className="pt-1">support@carevia.vn</p>
-              </div>
-            </div>
-          </div>
-          <div className="max-w-7xl mx-auto border-t border-slate-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-            <p>© 2025 Peteye. All rights reserved.</p>
-            <div className="flex gap-8">
-              <a className="hover:text-white transition-colors" href="#">Điều khoản sử dụng</a>
-              <a className="hover:text-white transition-colors" href="#">Chính sách bảo mật</a>
-            </div>
-          </div>
-        </footer>
-      )}
+      {!isStandalone && <Footer />}
     </div>
   );
 }

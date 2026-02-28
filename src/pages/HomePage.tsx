@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/authContext';
 import Logo from '../components/Logo';
+import Footer from '../components/Footer';
 
 const DEALS = [
     {
@@ -96,7 +97,7 @@ export default function HomePage() {
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-body">
-            {/* Top Banner */}
+            {/* Top Banner
             <div className="bg-primary text-white py-2 text-sm text-center font-medium">
                 <div className="container mx-auto px-4 flex justify-between items-center">
                     <span className="hidden md:inline">Chào mừng bạn đến với Peteye!</span>
@@ -110,7 +111,7 @@ export default function HomePage() {
                         <span className="text-xs opacity-80">VN | EN</span>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* Header */}
             <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-700">
@@ -605,109 +606,9 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
-                <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                        {/* Brand */}
-                        <div className="space-y-4">
-                            <Logo />
-                            <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
-                                Nền tảng kết nối chủ nuôi với cơ sở thú y và pet shop uy tín hàng đầu.
-                            </p>
-                            <div className="flex gap-4">
-                                <a
-                                    className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white transition-colors"
-                                    href="#"
-                                >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            clipRule="evenodd"
-                                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                            fillRule="evenodd"
-                                        />
-                                    </svg>
-                                </a>
-                                <a
-                                    className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white transition-colors"
-                                    href="#"
-                                >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            clipRule="evenodd"
-                                            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 014.185 3.362c.636-.247 1.363-.416 2.427-.465C7.674 2.012 8.029 2 12.315 2zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                                            fillRule="evenodd"
-                                        />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
 
-                        {/* Services */}
-                        <div>
-                            <h3 className="font-bold text-slate-800 dark:text-white mb-6">Dịch vụ</h3>
-                            <ul className="space-y-3 text-slate-500 dark:text-slate-400 text-sm">
-                                {['Khám chữa bệnh', 'Dịch vụ lưu trú', 'Spa & Grooming', 'Huấn luyện thú cưng'].map(
-                                    (s) => (
-                                        <li key={s}>
-                                            <a className="hover:text-primary transition-colors" href="#">
-                                                {s}
-                                            </a>
-                                        </li>
-                                    )
-                                )}
-                            </ul>
-                        </div>
 
-                        {/* About */}
-                        <div>
-                            <h3 className="font-bold text-slate-800 dark:text-white mb-6">Về Peteye</h3>
-                            <ul className="space-y-3 text-slate-500 dark:text-slate-400 text-sm">
-                                {['Câu chuyện thương hiệu', 'Tuyển dụng', 'Trở thành đối tác', 'Tin tức & Sự kiện'].map(
-                                    (s) => (
-                                        <li key={s}>
-                                            <a className="hover:text-primary transition-colors" href="#">
-                                                {s}
-                                            </a>
-                                        </li>
-                                    )
-                                )}
-                            </ul>
-                        </div>
-
-                        {/* Contact */}
-                        <div>
-                            <h3 className="font-bold text-slate-800 dark:text-white mb-6">Liên hệ</h3>
-                            <ul className="space-y-4 text-slate-500 dark:text-slate-400 text-sm">
-                                <li className="flex items-start gap-3">
-                                    <span className="material-symbols-outlined text-primary shrink-0">location_on</span>
-                                    <span>Tầng 12, Tòa nhà Innovation, Quận 1, TP. Hồ Chí Minh</span>
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <span className="material-symbols-outlined text-primary shrink-0">phone_in_talk</span>
-                                    <span>1900 1234 (8:00 - 22:00)</span>
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <span className="material-symbols-outlined text-primary shrink-0">mail</span>
-                                    <span>hotro@carevia.vn</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                        <p>© 2025 Peteye Platform. All rights reserved.</p>
-                        <div className="flex gap-6">
-                            <a className="hover:text-slate-600 dark:hover:text-slate-300" href="#">
-                                Điều khoản sử dụng
-                            </a>
-                            <a className="hover:text-slate-600 dark:hover:text-slate-300" href="#">
-                                Chính sách bảo mật
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
 
             {/* Floating Chat Button */}
             <a
