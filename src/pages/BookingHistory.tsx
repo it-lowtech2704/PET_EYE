@@ -129,44 +129,36 @@ export default function BookingHistory() {
     : BOOKINGS.filter(b => b.status === activeTab);
 
   return (
-    <div className="flex-1 max-w-5xl mx-auto w-full px-4 py-8">
-      <button
-        onClick={() => navigate('/profile')}
-        className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 mb-6 transition-colors"
-      >
-        <ArrowLeft size={20} />
-        <span className="font-medium">Quay lại</span>
-      </button>
+    <div className=" flex-1 flex flex-col gap-6">
+
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Lịch đặt dịch vụ</h1>
-          <p className="text-slate-500 mt-1">Quản lý tất cả lịch hẹn và dịch vụ thú cưng của bạn.</p>
-        </div>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">        <div>
+        <h1 className="text-3xl font-bold tracking-tight">Lịch đặt dịch vụ</h1>
+        <p className="text-slate-500 mt-1">Quản lý tất cả lịch hẹn và dịch vụ thú cưng của bạn.</p>
+      </div>
         <button className="flex items-center gap-2 bg-[#122143] text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-[#122143]/20 hover:-translate-y-0.5 transition-all">
           <Plus className="w-5 h-5" /> Đặt dịch vụ mới
         </button>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 mb-8 border-b border-slate-100 dark:border-slate-700 overflow-x-auto scrollbar-hide">
-        {TAB_FILTERS.map(t => (
-          <button
-            key={t.value}
-            onClick={() => setActiveTab(t.value)}
-            className={`pb-4 px-4 text-sm font-bold whitespace-nowrap border-b-2 transition-all ${activeTab === t.value
-                ? 'text-[#122143] dark:text-white border-[#122143] dark:border-white'
-                : 'text-slate-400 border-transparent hover:text-slate-600 dark:hover:text-slate-300'
-              }`}
-          >
-            {t.label}
-            {t.value !== 'all' && (
-              <span className={`ml-1.5 text-[10px] font-black ${activeTab === t.value ? 'opacity-100' : 'opacity-50'}`}>
-                ({BOOKINGS.filter(b => b.status === t.value).length})
-              </span>
-            )}
-          </button>
-        ))}
+      <div className="flex gap-1 mb-2 border-b border-slate-100 dark:border-slate-700 overflow-x-auto scrollbar-hide">        {TAB_FILTERS.map(t => (
+        <button
+          key={t.value}
+          onClick={() => setActiveTab(t.value)}
+          className={`pb-4 px-4 text-sm font-bold whitespace-nowrap border-b-2 transition-all ${activeTab === t.value
+            ? 'text-[#122143] dark:text-white border-[#122143] dark:border-white'
+            : 'text-slate-400 border-transparent hover:text-slate-600 dark:hover:text-slate-300'
+            }`}
+        >
+          {t.label}
+          {t.value !== 'all' && (
+            <span className={`ml-1.5 text-[10px] font-black ${activeTab === t.value ? 'opacity-100' : 'opacity-50'}`}>
+              ({BOOKINGS.filter(b => b.status === t.value).length})
+            </span>
+          )}
+        </button>
+      ))}
       </div>
 
       {/* Cards */}

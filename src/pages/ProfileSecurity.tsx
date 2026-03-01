@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ProfileLayout } from './Profile';
 
 export default function ProfileSecurity() {
     const [showOld, setShowOld] = useState(false);
@@ -14,8 +13,7 @@ export default function ProfileSecurity() {
     };
 
     return (
-        <ProfileLayout>
-            <main className="flex-1 flex flex-col gap-6">
+        <main className="flex-1 flex flex-col gap-6">
                 <div>
                     <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">Bảo mật & Mật khẩu</h1>
                     <p className="text-slate-500 dark:text-slate-400 mt-1">Quản lý mật khẩu và cài đặt bảo mật tài khoản.</p>
@@ -133,6 +131,5 @@ export default function ProfileSecurity() {
                     </div>
                 </div>
             </main>
-        </ProfileLayout>
     );
 }

@@ -204,7 +204,7 @@ function AuthNavbar() {
   const NAV = [
     { to: '/home', label: 'Trang chủ' },
     { to: '/search', label: 'Tìm cơ sở' },
-    { to: '/bookings', label: 'Lịch hẹn' },
+    { to: '/profile/bookings', label: 'Lịch hẹn' },
   ];
 
   const QUICK = [
@@ -316,8 +316,8 @@ function AuthNavbar() {
 
                 {[
                   { to: '/profile', icon: <User className="w-3.5 h-3.5" />, label: 'Tài khoản của tôi' },
-                  { to: '/pet/1', icon: <PawPrint className="w-3.5 h-3.5" />, label: 'Hồ sơ thú cưng' },
-                  { to: '/bookings', icon: <Calendar className="w-3.5 h-3.5" />, label: 'Lịch đặt dịch vụ' },
+                  { to: '/profile/pets', icon: <PawPrint className="w-3.5 h-3.5" />, label: 'Hồ sơ thú cưng' },
+                  { to: '/profile/bookings', icon: <Calendar className="w-3.5 h-3.5" />, label: 'Lịch đặt dịch vụ' },
                   { to: '/camera', icon: <Video className="w-3.5 h-3.5" />, label: 'Camera lưu trú', badge: 'LIVE' },
                   { to: '/profile/security', icon: <Settings className="w-3.5 h-3.5" />, label: 'Cài đặt' },
                 ].map(item => (

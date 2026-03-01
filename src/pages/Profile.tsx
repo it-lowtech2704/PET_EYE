@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { icon: 'notifications', label: 'Thông báo', path: '/profile/notifications' },
 ];
 
-export function ProfileLayout({ children }: { children?: React.ReactNode }) {
+export function ProfileLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -86,7 +86,9 @@ export function ProfileLayout({ children }: { children?: React.ReactNode }) {
         </aside>
 
         {/* Main */}
-        {children}
+        <main className="flex-1">
+          <Outlet />
+        </main>
       </div>
     </div>
   );
@@ -111,8 +113,7 @@ export default function Profile() {
   };
 
   return (
-    <ProfileLayout>
-      <main className="flex-1 flex flex-col gap-6">
+    <main className="flex-1 flex flex-col gap-6">
         <div>
           <h1 className="text-3xl text-slate-900 dark:text-slate-100 tracking-tight font-bold">Thông tin cá nhân</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1">Quản lý thông tin hồ sơ và tùy chọn của bạn.</p>
@@ -240,6 +241,5 @@ export default function Profile() {
           ))}
         </div>
       </main>
-    </ProfileLayout>
   );
 }

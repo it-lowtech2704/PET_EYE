@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { getPetById } from '../lib/petData';
 import {
   Camera, Edit2, Save, X, ChevronRight, Download, Plus,
   Calendar, Clock, MapPin, Syringe, FileText, Heart,
@@ -10,7 +11,7 @@ import {
 /* ────────────────────────────────────────────────────────────
    TYPES
 ──────────────────────────────────────────────────────────── */
-interface PetData {
+export interface PetData {
   name: string;
   breed: string;
   gender: 'Đực' | 'Cái';
@@ -26,17 +27,18 @@ interface PetData {
 /* ────────────────────────────────────────────────────────────
    MOCK DATA
 ──────────────────────────────────────────────────────────── */
-const INITIAL_PET: PetData = {
-  name: 'Miu Miu',
-  breed: 'Mèo Anh Lông Ngắn',
+// when no pet found, fallback to an empty object
+const EMPTY_PET: PetData = {
+  name: '',
+  breed: '',
   gender: 'Cái',
-  birthYear: 2024,
-  weight: 4.5,
-  chipId: '#9821A',
-  color: 'Xám xanh',
-  sterilized: true,
-  notes: 'Bé rất thích chơi với đồ chơi có tiếng động. Nhút nhát với người lạ nhưng thân thiện khi quen.',
-  avatar: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop',
+  birthYear: new Date().getFullYear(),
+  weight: 0,
+  chipId: '',
+  color: '',
+  sterilized: false,
+  notes: '',
+  avatar: '',
 };
 
 const VACCINES = [
@@ -178,8 +180,30 @@ function EditModal({ pet, onSave, onClose }: { pet: PetData; onSave: (p: PetData
    MAIN PAGE
 ──────────────────────────────────────────────────────────── */
 export default function PetProfile() {
-  const [pet, setPet] = useState<PetData>(INITIAL_PET);
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
+  const initial: PetData = (() => {
+    if (id) {
+      const rec = getPetById(+id);
+      if (rec) return rec;
+      // missing pet - redirect to pet listing
+      setTimeout(() => navigate('/profile/pets'), 0);
+    }
+    return EMPTY_PET;
+  })();
+
+  const [pet, setPet] = useState<PetData>(initial);
   const [editing, setEditing] = useState(false);
+
+  // update if route parameter changes
+  React.useEffect(() => {
+    if (id) {
+      const rec = getPetById(+id);
+      if (rec) setPet(rec);
+      else navigate('/profile/pets');
+    }
+  }, [id, navigate]);
   const [tab, setTab] = useState<'vaccines' | 'docs'>('vaccines');
   const [lightbox, setLightbox] = useState<string | null>(null);
 
@@ -205,6 +229,8 @@ export default function PetProfile() {
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
         <Link to="/home" className="hover:text-primary transition-colors">Trang chủ</Link>
+        <ChevronRight className="w-4 h-4" />
+         <Link to="/home" className="hover:text-primary transition-colors">Profile</Link>
         <ChevronRight className="w-4 h-4" />
         <span className="text-slate-700 dark:text-slate-200 font-medium">Hồ sơ thú cưng</span>
       </nav>
