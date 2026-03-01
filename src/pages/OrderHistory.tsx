@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, ChevronRight, Package, Clock, CheckCircle2, XCircle, AlertCircle } from 'lucide-react';
+import { Search, Filter, Clock, CheckCircle2, XCircle, AlertCircle } from 'lucide-react';
+import { ProfileLayout } from './Profile';
 
 export default function OrderHistory() {
   const orders = [
@@ -28,62 +29,64 @@ export default function OrderHistory() {
   };
 
   return (
-    <div className="flex-1 max-w-5xl mx-auto w-full px-4 py-8">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Order History</h1>
-          <p className="text-slate-500">Track and manage your pet supply purchases.</p>
-        </div>
-        <div className="flex gap-2 w-full md:w-auto">
-          <div className="relative flex-1 md:w-64">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input className="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm" placeholder="Search orders..." />
+    <ProfileLayout>
+      <main className="flex-1 max-w-5xl mx-auto w-full px-4 py-8">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">Lịch sử đơn hàng</h1>
+            <p className="text-slate-500 dark:text-slate-400 mt-1">Theo dõi và quản lý các đơn hàng mua hàng thú cưng của bạn.</p>
           </div>
-          <button className="p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl">
-            <Filter size={18} />
-          </button>
+          <div className="flex gap-2 w-full md:w-auto">
+            <div className="relative flex-1 md:w-64">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+              <input className="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm" placeholder="Tìm kiếm đơn hàng..." />
+            </div>
+            <button className="p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl">
+              <Filter size={18} />
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div className="space-y-4">
-        {orders.map((order) => (
-          <div key={order.id} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex flex-col sm:flex-row gap-6">
-              <div className="w-full sm:w-24 h-24 rounded-xl overflow-hidden bg-slate-100 shrink-0">
-                <img src={order.image} alt="Order" className="w-full h-full object-cover" />
-              </div>
-              <div className="flex-1 flex flex-col justify-between">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="font-bold text-lg">{order.id}</h3>
-                    <p className="text-slate-500 text-sm">Ordered on {order.date}</p>
-                  </div>
-                  <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${getStatusColor(order.status)}`}>
-                    {getStatusIcon(order.status)}
-                    {order.status}
-                  </div>
+        <div className="space-y-4">
+          {orders.map((order) => (
+            <div key={order.id} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex flex-col sm:flex-row gap-6">
+                <div className="w-full sm:w-24 h-24 rounded-xl overflow-hidden bg-slate-100 shrink-0">
+                  <img src={order.image} alt="Order" className="w-full h-full object-cover" />
                 </div>
-                <div className="flex flex-wrap justify-between items-end gap-4 mt-4">
-                  <div className="flex gap-6">
+                <div className="flex-1 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Total Amount</p>
-                      <p className="font-bold">{order.amount}</p>
+                      <h3 className="font-bold text-lg">{order.id}</h3>
+                      <p className="text-slate-500 text-sm">Ordered on {order.date}</p>
                     </div>
-                    <div>
-                      <p className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Items</p>
-                      <p className="font-bold">{order.items} items</p>
+                    <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${getStatusColor(order.status)}`}>
+                      {getStatusIcon(order.status)}
+                      {order.status}
                     </div>
                   </div>
-                  <div className="flex gap-2">
-                    <button className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors">Order Details</button>
-                    <Link to="/" className="px-4 py-2 rounded-lg bg-[#1a2b4c] text-white text-xs font-bold hover:opacity-90 transition-opacity">Reorder</Link>
+                  <div className="flex flex-wrap justify-between items-end gap-4 mt-4">
+                    <div className="flex gap-6">
+                      <div>
+                        <p className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Total Amount</p>
+                        <p className="font-bold">{order.amount}</p>
+                      </div>
+                      <div>
+                        <p className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Items</p>
+                        <p className="font-bold">{order.items} items</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <button className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors">Order Details</button>
+                      <Link to="/" className="px-4 py-2 rounded-lg bg-[#1a2b4c] text-white text-xs font-bold hover:opacity-90 transition-opacity">Reorder</Link>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          ))}
+        </div>
+      </main>
+    </ProfileLayout>
   );
 }

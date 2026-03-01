@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Calendar as CalendarIcon, Clock, MapPin, ChevronRight,
   MoreVertical, Plus, Home, Stethoscope, Scissors, Video,
-  Star, Phone, CheckCircle, AlertCircle, XCircle, Wifi
+  Star, Phone, CheckCircle, AlertCircle, XCircle, Wifi, ArrowLeft
 } from 'lucide-react';
 
 /* ─── TYPES ─────────────────────────────────────────────────────────── */
@@ -121,6 +121,7 @@ const TAB_FILTERS: { label: string; value: Status | 'all' }[] = [
 
 /* ─── MAIN COMPONENT ─────────────────────────────────────────────────── */
 export default function BookingHistory() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Status | 'all'>('all');
 
   const filtered = activeTab === 'all'
@@ -129,6 +130,13 @@ export default function BookingHistory() {
 
   return (
     <div className="flex-1 max-w-5xl mx-auto w-full px-4 py-8">
+      <button
+        onClick={() => navigate('/profile')}
+        className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 mb-6 transition-colors"
+      >
+        <ArrowLeft size={20} />
+        <span className="font-medium">Quay lại</span>
+      </button>
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
