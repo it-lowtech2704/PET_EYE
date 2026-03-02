@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, MapPin, Video, Star, ArrowRight, CheckCircle2, PawPrint } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useAuth } from '../lib/authContext';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Home() {
   const navigate = useNavigate();

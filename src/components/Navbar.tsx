@@ -1,12 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../lib/authContext';
+import { useAuth } from '../contexts/AuthContext';
 import Logo from './Logo';
 import {
   Bell, ChevronDown, LogOut, User, Settings,
-  Stethoscope, Scissors, PawPrint, Menu, X,
-  ShieldCheck, Video, Calendar, Home, MessageCircle,
-  Search, Sparkles, ArrowRight
+  PawPrint, Menu, X, Video, Calendar, MessageCircle
 } from 'lucide-react';
 
 /* ─── helpers ─────────────────────────────────────────────── */
@@ -40,9 +38,6 @@ function GuestNavbar() {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [servOpen, setServOpen] = useState(false);
-  const servRef = useRef<HTMLDivElement>(null);
-  useOutsideClick(servRef, () => setServOpen(false));
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 24);
@@ -51,18 +46,10 @@ function GuestNavbar() {
   }, []);
 
   const goto = (id: string) => {
-    setServOpen(false);
     setMobileOpen(false);
     if (window.location.pathname === '/') scrollTo(id);
     else { navigate('/'); setTimeout(() => scrollTo(id), 350); }
   };
-
-  const SERVICES = [
-    { icon: <Stethoscope className="w-4 h-4" />, label: 'Khám bệnh', desc: 'Đặt lịch tại phòng khám uy tín', id: 'co-so' },
-    { icon: <PawPrint className="w-4 h-4" />, label: 'Lưu trú thú cưng', desc: 'Phòng riêng, camera 24/7', id: 'camera' },
-    { icon: <Scissors className="w-4 h-4" />, label: 'Spa & Grooming', desc: 'Tắm, tỉa lông chuyên nghiệp', id: 'co-so' },
-    { icon: <ShieldCheck className="w-4 h-4" />, label: 'Tiêm chủng', desc: 'Lịch tiêm, hồ sơ số hoá', id: 'co-so' },
-  ];
 
   return (
     <header
@@ -80,44 +67,6 @@ function GuestNavbar() {
 
         {/* ── Nav links (desktop) ───────────────── */}
         <nav className="hidden lg:flex items-center gap-0.5 text-[13.5px] font-medium">
-          {/* Services mega-dropdown */}
-          <div ref={servRef} className="relative">
-            <button
-              onClick={() => setServOpen(v => !v)}
-              className={`flex items-center gap-1 h-9 px-3.5 rounded-lg transition-colors
-                ${servOpen ? 'text-slate-900 dark:text-white bg-slate-100 dark:bg-slate-800' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/70'}`}
-            >
-              Dịch vụ
-              <ChevronDown className={`w-[14px] h-[14px] transition-transform duration-200 ${servOpen ? 'rotate-180' : ''}`} />
-            </button>
-
-            {servOpen && (
-              <div className="absolute top-[calc(100%+10px)] left-0 w-72 bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-slate-900/80 border border-slate-100 dark:border-slate-700 overflow-hidden z-50">
-                <div className="px-4 pt-4 pb-2">
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.12em]">Dịch vụ Peteye</p>
-                </div>
-                {SERVICES.map(s => (
-                  <button key={s.label} onClick={() => goto(s.id)}
-                    className="w-full flex items-center gap-3.5 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/60 transition-colors text-left group">
-                    <span className="w-9 h-9 rounded-xl bg-primary/8 dark:bg-slate-700 flex items-center justify-center text-primary dark:text-secondary shrink-0 group-hover:bg-primary/15 transition-colors">
-                      {s.icon}
-                    </span>
-                    <div>
-                      <p className="text-[13px] font-semibold text-slate-800 dark:text-white">{s.label}</p>
-                      <p className="text-[11px] text-slate-400 mt-0.5">{s.desc}</p>
-                    </div>
-                  </button>
-                ))}
-                <div className="px-4 py-3 border-t border-slate-100 dark:border-slate-700">
-                  <button onClick={() => goto('co-so')}
-                    className="w-full flex items-center justify-center gap-1.5 text-[12px] font-semibold text-secondary hover:text-cyan-500 transition-colors">
-                    Xem tất cả dịch vụ <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
           <button onClick={() => goto('co-so')}
             className="h-9 px-3.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/70 transition-colors">
             Cơ sở thú y
@@ -154,10 +103,8 @@ function GuestNavbar() {
       {mobileOpen && (
         <div className="lg:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 px-5 pt-3 pb-5 space-y-1">
           {[
-            { label: 'Dịch vụ', id: 'co-so' },
             { label: 'Cơ sở thú y', id: 'co-so' },
             { label: 'Camera 24/7', id: 'camera' },
-            { label: 'Tại sao Peteye', id: 'ly-do' },
           ].map(item => (
             <button key={item.label} onClick={() => goto(item.id)}
               className="w-full text-left px-3 py-2.5 rounded-lg text-[14px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">

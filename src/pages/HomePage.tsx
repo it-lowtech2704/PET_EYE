@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../lib/authContext';
+import { useAuth } from '../contexts/AuthContext';
 import Logo from '../components/Logo';
 import Footer from '../components/Footer';
 
@@ -139,23 +139,8 @@ export default function HomePage() {
                         </div>
 
                         {/* Nav + Auth */}
-                        <div className="flex items-center gap-6 text-sm font-semibold">
-                            <nav className="hidden lg:flex items-center gap-6 text-slate-600 dark:text-slate-300">
-                                <a className="hover:text-primary transition-colors" href="#">
-                                    Dịch vụ
-                                </a>
-                                <a className="hover:text-primary transition-colors" href="#">
-                                    Cửa hàng
-                                </a>
-                                <a className="hover:text-primary transition-colors" href="#">
-                                    Cộng đồng
-                                </a>
-                            </nav>
-                            <div className="flex items-center gap-3">
-                                <button className="hidden md:block px-4 py-2 text-primary border border-primary rounded-full hover:bg-primary/5 transition-colors text-sm font-semibold">
-                                    Đối tác
-                                </button>
-                                {user ? (
+                        <div className="flex items-center gap-3 text-sm font-semibold">
+                            {user ? (
                                     <div className="flex items-center gap-3">
                                         <Link to="/profile" className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1.5 hover:bg-primary/10 transition-colors">
                                             <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">
@@ -182,7 +167,6 @@ export default function HomePage() {
                                         <span>Đăng nhập</span>
                                     </Link>
                                 )}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -219,10 +203,10 @@ export default function HomePage() {
                                     className="px-8 py-3 bg-primary text-white rounded-full font-bold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-1 transition-all">
                                     Tìm cơ sở thú y
                                 </button>
-                                <button className="px-8 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-full font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
+                                <Link to="/camera" className="px-8 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-full font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
                                     <span className="material-symbols-outlined">play_circle</span>
                                     Xem video
-                                </button>
+                                </Link>
                             </div>
                             <div className="pt-6 flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
                                 <div className="flex -space-x-2">
@@ -313,6 +297,7 @@ export default function HomePage() {
                                 desc: 'Đội ngũ bác sĩ chuyên môn cao, cơ sở vật chất hiện đại chuẩn quốc tế.',
                                 bg: 'bg-blue-50 dark:bg-blue-900/20',
                                 color: 'text-blue-600 dark:text-blue-400',
+                                link: '/search',
                             },
                             {
                                 icon: 'hotel',
@@ -320,6 +305,7 @@ export default function HomePage() {
                                 desc: 'Không gian thoải mái, an toàn, chăm sóc tận tình 24/7 khi bạn vắng nhà.',
                                 bg: 'bg-rose-50 dark:bg-rose-900/20',
                                 color: 'text-rose-600 dark:text-rose-400',
+                                link: '/search',
                             },
                             {
                                 icon: 'content_cut',
@@ -327,6 +313,7 @@ export default function HomePage() {
                                 desc: 'Dịch vụ tắm sấy, cắt tỉa tạo kiểu chuyên nghiệp giúp bé luôn xinh xắn.',
                                 bg: 'bg-purple-50 dark:bg-purple-900/20',
                                 color: 'text-purple-600 dark:text-purple-400',
+                                link: '/search',
                             },
                             {
                                 icon: 'shopping_bag',
@@ -334,9 +321,10 @@ export default function HomePage() {
                                 desc: 'Cung cấp thức ăn, phụ kiện, đồ chơi chính hãng, chất lượng hàng đầu.',
                                 bg: 'bg-amber-50 dark:bg-amber-900/20',
                                 color: 'text-amber-600 dark:text-amber-400',
+                                link: '/search',
                             },
-                        ].map(({ icon, label, desc, bg, color }) => (
-                            <div key={label} className="group cursor-pointer bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700 hover:border-primary/30 hover:-translate-y-2 relative overflow-hidden z-10">
+                        ].map(({ icon, label, desc, bg, color, link }) => (
+                            <Link key={label} to={link} className="group cursor-pointer bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700 hover:border-primary/30 hover:-translate-y-2 relative overflow-hidden z-10 block">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
                                 <div className={`w-16 h-16 rounded-2xl ${bg} ${color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                     <span className="material-symbols-outlined text-3xl">{icon}</span>
@@ -351,7 +339,7 @@ export default function HomePage() {
                                     Khám phá ngay
                                     <span className="material-symbols-outlined text-sm ml-1 group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
@@ -373,9 +361,9 @@ export default function HomePage() {
                                 <p className="text-slate-600 dark:text-slate-300 mb-6 font-medium">
                                     Quan sát thú cưng của bạn mọi lúc mọi nơi khi gửi tại khách sạn đối tác.
                                 </p>
-                                <button className="px-6 py-2 bg-primary text-white rounded-full hover:bg-blue-800 transition shadow-lg border border-primary">
+                                <Link to="/camera" className="inline-block px-6 py-2 bg-primary text-white rounded-full hover:bg-blue-800 transition shadow-lg border border-primary">
                                     Khám phá ngay
-                                </button>
+                                </Link>
                             </div>
                             <img
                                 alt="Dog looking at camera"
@@ -395,9 +383,9 @@ export default function HomePage() {
                                     Giảm tới 25% cho mũi đầu tiên
                                 </p>
                                 <div className="mt-auto">
-                                    <button className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm rounded-full transition shadow-md">
+                                    <Link to="/search" className="inline-block px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm rounded-full transition shadow-md">
                                         Đặt lịch
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                             <img
@@ -533,9 +521,9 @@ export default function HomePage() {
                                     </div>
                                 ))}
                             </div>
-                            <button className="mt-10 px-8 py-3 bg-primary text-white font-bold rounded-full shadow-lg shadow-blue-500/30 hover:bg-blue-800 transition-colors">
+                            <Link to="/search" className="inline-block mt-10 px-8 py-3 bg-primary text-white font-bold rounded-full shadow-lg shadow-blue-500/30 hover:bg-blue-800 transition-colors">
                                 Tìm hiểu thêm
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -611,12 +599,12 @@ export default function HomePage() {
             <Footer />
 
             {/* Floating Chat Button */}
-            <a
+            <Link
+                to="/messages"
                 className="fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50 hover:bg-blue-800"
-                href="#"
             >
                 <span className="material-symbols-outlined text-2xl">chat</span>
-            </a>
+            </Link>
         </div>
     );
 }

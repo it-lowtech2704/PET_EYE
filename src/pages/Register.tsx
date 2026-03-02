@@ -1,17 +1,26 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, Mail, Phone, Lock } from 'lucide-react';
+import { User, Mail, Phone, Lock, Store } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useAuth } from '../lib/authContext';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Register() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
+  const [accountType, setAccountType] = React.useState<'customer' | 'shop'>('customer');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // If shop registration, redirect to shop register page
+    if (accountType === 'shop') {
+      navigate('/shop/register');
+      return;
+    }
+    
+    // Customer registration
     login({ name: name || 'Thành viên mới', email: email || 'member@carevia.vn' });
     navigate('/home');
   };
@@ -59,6 +68,46 @@ export default function Register() {
               Yêu thương thú cưng bằng sự chăm sóc chuyên nghiệp nhất
             </p>
           </div>
+
+          {/* Account Type Selection */}
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <button
+              type="button"
+              onClick={() => setAccountType('customer')}
+              className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
+                accountType === 'customer'
+                  ? 'border-primary bg-primary/5'
+                  : 'border-slate-200 hover:border-slate-300'
+              }`}
+            >
+              <User size={24} className={accountType === 'customer' ? 'text-primary' : 'text-slate-400'} />
+              <span className={`text-sm font-bold ${accountType === 'customer' ? 'text-primary' : 'text-slate-600'}`}>
+                Khách hàng
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setAccountType('shop')}
+              className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
+                accountType === 'shop'
+                  ? 'border-primary bg-primary/5'
+                  : 'border-slate-200 hover:border-slate-300'
+              }`}
+            >
+              <Store size={24} className={accountType === 'shop' ? 'text-primary' : 'text-slate-400'} />
+              <span className={`text-sm font-bold ${accountType === 'shop' ? 'text-primary' : 'text-slate-600'}`}>
+                Cửa hàng/Phòng khám
+              </span>
+            </button>
+          </div>
+
+          {accountType === 'shop' && (
+            <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+              <p className="text-sm text-blue-800">
+                <strong>Lưu ý:</strong> Đăng ký tài khoản cửa hàng/phòng khám cần được admin phê duyệt trước khi sử dụng.
+              </p>
+            </div>
+          )}
 
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
@@ -149,7 +198,7 @@ export default function Register() {
               type="submit"
               className="w-full py-4 bg-primary text-white font-bold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-[0.98]"
             >
-              Đăng ký ngay
+              {accountType === 'shop' ? 'Tiếp tục đăng ký' : 'Đăng ký ngay'}
             </button>
 
             <button

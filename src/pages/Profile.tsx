@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation, Outlet } from 'react-router-dom';
-import { useAuth } from '../lib/authContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const NAV_ITEMS = [
   { icon: 'person', label: 'Thông tin cá nhân', path: '/profile' },
