@@ -108,8 +108,8 @@ const HERO_IMAGES = [
   'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=1200&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1601758174184-07ba1e5b0a7a?q=80&w=600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1625321171394-29ef4b56f51e?q=80&w=600&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=80',
 ];
 
 function StarRating({ rating, size = 'text-base' }: { rating: number; size?: string }) {
@@ -131,8 +131,8 @@ export default function ClinicDetail() {
   const [selectedServices, setSelectedServices] = useState<string[]>(['Khám tổng quát']);
 
   const toggleService = (serviceTitle: string) => {
-    setSelectedServices(prev => 
-      prev.includes(serviceTitle) 
+    setSelectedServices(prev =>
+      prev.includes(serviceTitle)
         ? prev.filter(s => s !== serviceTitle)
         : [...prev, serviceTitle]
     );
@@ -341,8 +341,8 @@ export default function ClinicDetail() {
                   >
                     {/* Service Image */}
                     <div className="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 shadow-sm">
-                      <img 
-                        src={svc.image} 
+                      <img
+                        src={svc.image}
                         alt={svc.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
@@ -351,7 +351,7 @@ export default function ClinicDetail() {
                         <span className="material-symbols-outlined text-teal-600 dark:text-teal-400 text-sm">{svc.icon}</span>
                       </div>
                     </div>
-                    
+
                     {/* Service Info */}
                     <div className="flex-1 min-w-0">
                       <h4 className="font-bold text-slate-900 dark:text-slate-100 text-sm group-hover:text-[#1a2b4c] dark:group-hover:text-teal-400 transition-colors">
@@ -359,7 +359,7 @@ export default function ClinicDetail() {
                       </h4>
                       <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-1">{svc.desc}</p>
                     </div>
-                    
+
                     {/* Price */}
                     <div className="text-right shrink-0">
                       <span className="block font-bold text-slate-900 dark:text-slate-100 text-sm">{svc.price}</span>

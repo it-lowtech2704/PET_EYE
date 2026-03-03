@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Filter, Clock, CheckCircle2, XCircle, AlertCircle } from 'lucide-react';
 
+type OrderStatus = 'Đã giao' | 'Đang xử lý' | 'Đã huỷ';
+
 export default function OrderHistory() {
+  const [activeTab, setActiveTab] = useState<OrderStatus | 'all'>('all');
   const orders = [
     {
       id: 'ORD-88291',
@@ -56,6 +59,17 @@ export default function OrderHistory() {
     }
   };
 
+  const TAB_FILTERS: { label: string; value: OrderStatus | 'all' }[] = [
+    { label: 'Tất cả', value: 'all' },
+    { label: 'Đã giao', value: 'Đã giao' },
+    { label: 'Đang xử lý', value: 'Đang xử lý' },
+    { label: 'Đã huỷ', value: 'Đã huỷ' },
+  ];
+
+  const filtered = activeTab === 'all' 
+    ? orders 
+    : orders.filter(o => o.status === activeTab);
+
   return (
     <main className=" flex-1 flex flex-col gap-6">
       
@@ -88,9 +102,29 @@ export default function OrderHistory() {
         </div>
       </div>
 
+      {/* Tabs */}
+      <div className="flex gap-1 mb-2 border-b border-slate-100 dark:border-slate-700 overflow-x-auto scrollbar-hide">
+        {TAB_FILTERS.map(t => (
+          <button
+            key={t.value}
+            onClick={() => setActiveTab(t.value)}
+            className={`pb-4 px-4 text-sm font-bold whitespace-nowrap border-b-2 transition-all ${activeTab === t.value
+              ? 'text-[#122143] dark:text-white border-[#122143] dark:border-white'
+              : 'text-slate-400 border-transparent hover:text-slate-600 dark:hover:text-slate-300'
+              }`}
+          >
+            {t.label}
+            {t.value !== 'all' && (
+              <span className={`ml-1.5 text-[10px] font-black ${activeTab === t.value ? 'opacity-100' : 'opacity-50'}`}>
+                ({orders.filter(o => o.status === t.value).length})
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
       {/* Orders */}
-      <div className="space-y-4 mt-6">
-        {orders.map((order) => (
+      <div className="space-y-4 ">
+        {filtered.map((order) => (
           <div
             key={order.id}
             className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm hover:shadow-md transition-shadow"
@@ -155,6 +189,14 @@ export default function OrderHistory() {
             </div>
           </div>
         ))}
+
+        {filtered.length === 0 && (
+          <div className="text-center py-12 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700">
+            <AlertCircle className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+            <p className="text-slate-500 dark:text-slate-400 font-semibold text-lg">Không có đơn hàng nào</p>
+            <p className="text-slate-400 dark:text-slate-500 text-sm mt-2">Thử thay đổi bộ lọc hoặc tìm kiếm khác</p>
+          </div>
+        )}
       </div>
     </main>
   );

@@ -52,24 +52,41 @@ const MOCK_CUSTOMERS: Customer[] = [
 export default function ShopCustomers() {
   const [customers] = useState<Customer[]>(MOCK_CUSTOMERS);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState<'all' | 'new' | 'regular' | 'vip'>('all');
 
-  const filteredCustomers = customers.filter((customer) =>
-    customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    customer.phone.includes(searchTerm)
-  );
+  const filteredCustomers = customers.filter((customer) => {
+    const searchMatch =
+      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.phone.includes(searchTerm);
+
+    if (!searchMatch) return false;
+
+    if (filter === 'all') return true;
+
+    // Determine customer category
+    const lastVisitDate = new Date(customer.lastVisit.split('/').reverse().join('-'));
+    const today = new Date();
+    const daysDiff = Math.floor((today.getTime() - lastVisitDate.getTime()) / (1000 * 60 * 60 * 24));
+    const isNew = daysDiff <= 7;
+
+    const spentAmount = parseInt(customer.totalSpent.replace(/\D/g, ''));
+    const isVIP = spentAmount >= 5000000 || customer.totalBookings >= 20;
+
+    if (filter === 'new') return isNew;
+    if (filter === 'vip') return isVIP;
+    if (filter === 'regular') return !isNew && !isVIP;
+
+    return true;
+  });
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-      <div className="max-w-screen-2xl mx-auto px-5 md:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Header with Image */}
         <div className="mb-8 relative">
           <div className="absolute right-0 top-0 w-64 h-64 opacity-10 pointer-events-none hidden lg:block">
-            <img 
-              src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400" 
-              alt="Customers" 
-              className="w-full h-full object-contain"
-            />
+
           </div>
           <div className="relative z-10">
             <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Quản lý khách hàng</h1>
@@ -99,7 +116,7 @@ export default function ShopCustomers() {
 
         {/* Search */}
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm mb-6 border border-slate-100 dark:border-slate-700">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
               <input
@@ -114,6 +131,27 @@ export default function ShopCustomers() {
               <Filter size={20} />
               Lọc
             </button>
+          </div>
+
+          {/* Customer Type Filters */}
+          <div className="flex gap-2 overflow-x-auto">
+            {[
+              { value: 'all', label: 'Tất cả' },
+              { value: 'new', label: 'Khách hàng mới' },
+              { value: 'regular', label: 'Khách hàng thường' },
+              { value: 'vip', label: 'Khách hàng VIP' },
+            ].map((tab) => (
+              <button
+                key={tab.value}
+                onClick={() => setFilter(tab.value as any)}
+                className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${filter === tab.value
+                    ? 'bg-gradient-to-r from-[#1a2b4c] to-slate-700 text-white shadow-md'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                  }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -165,19 +203,44 @@ export default function ShopCustomers() {
                   </div>
 
                   {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="text-center p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">Thú cưng</p>
-                      <p className="text-2xl font-bold text-slate-900 dark:text-white">{customer.pets}</p>
+                  <div className="grid grid-cols-3 gap-3 self-start">
+
+                    {/* Thú cưng */}
+                    <div className="h-20 flex flex-col justify-center text-center
+                  bg-blue-50 dark:bg-blue-900/30
+                  rounded-xl">
+                      <p className="text-[11px] text-blue-600 dark:text-blue-300">
+                        Thú cưng
+                      </p>
+                      <p className="text-xl font-bold text-blue-700 dark:text-blue-200">
+                        {customer.pets}
+                      </p>
                     </div>
-                    <div className="text-center p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">Lượt đặt</p>
-                      <p className="text-2xl font-bold text-slate-900 dark:text-white">{customer.totalBookings}</p>
+
+                    {/* Lượt đặt */}
+                    <div className="h-20 flex flex-col justify-center text-center
+                  bg-emerald-50 dark:bg-emerald-900/30
+                  rounded-xl">
+                      <p className="text-[11px] text-emerald-600 dark:text-emerald-300">
+                        Lượt đặt
+                      </p>
+                      <p className="text-xl font-bold text-emerald-700 dark:text-emerald-200">
+                        {customer.totalBookings}
+                      </p>
                     </div>
-                    <div className="text-center p-3 bg-gradient-to-br from-[#1a2b4c] to-slate-700 rounded-xl">
-                      <p className="text-xs text-slate-300 mb-1">Tổng chi</p>
-                      <p className="text-lg font-bold text-white">{customer.totalSpent.replace('.000đ', 'K')}</p>
+
+                    {/* Tổng chi */}
+                    <div className="h-20 flex flex-col justify-center text-center
+                  bg-gradient-to-br from-[#1a2b4c] to-slate-700
+                  rounded-xl">
+                      <p className="text-[11px] text-slate-300">
+                        Tổng chi
+                      </p>
+                      <p className="text-lg font-bold text-white">
+                        {customer.totalSpent.replace('.000đ', 'K')}
+                      </p>
                     </div>
+
                   </div>
                 </div>
 

@@ -43,6 +43,8 @@ const MOCK_ORDERS: Order[] = [
 
 export default function ShopOrders() {
   const [orders] = useState<Order[]>(MOCK_ORDERS);
+  const [filter, setFilter] = useState<Order['status'] | 'all'>('all');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const stats = [
     { label: 'Doanh thu tháng', value: '45.2M', icon: DollarSign, gradient: 'from-green-500 to-emerald-600', change: '+12%' },
@@ -61,17 +63,20 @@ export default function ShopOrders() {
     return configs[status];
   };
 
+  const filteredOrders = orders.filter((order) => {
+    const matchesFilter = filter === 'all' || order.status === filter;
+    const matchesSearch = order.customerName.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          order.id.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-      <div className="max-w-screen-2xl mx-auto px-5 md:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Header with Image */}
         <div className="mb-8 relative">
           <div className="absolute right-0 top-0 w-64 h-64 opacity-10 pointer-events-none hidden lg:block">
-            <img 
-              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400" 
-              alt="Orders" 
-              className="w-full h-full object-contain"
-            />
+           
           </div>
           <div className="relative z-10">
             <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Quản lý đơn hàng</h1>
@@ -103,12 +108,14 @@ export default function ShopOrders() {
 
         {/* Search */}
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm mb-6 border border-slate-100 dark:border-slate-700">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
               <input
                 type="text"
                 placeholder="Tìm đơn hàng..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-slate-900 dark:text-white transition-all"
               />
             </div>
@@ -117,11 +124,33 @@ export default function ShopOrders() {
               Lọc theo ngày
             </button>
           </div>
+
+          {/* Status Filters */}
+          <div className="flex gap-2 overflow-x-auto">
+            {[
+              { value: 'all', label: 'Tất cả' },
+              { value: 'pending', label: 'Chờ xử lý' },
+              { value: 'processing', label: 'Đang xử lý' },
+              { value: 'completed', label: 'Hoàn thành' },
+            ].map((tab) => (
+              <button
+                key={tab.value}
+                onClick={() => setFilter(tab.value as any)}
+                className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
+                  filter === tab.value
+                    ? 'bg-gradient-to-r from-[#1a2b4c] to-slate-700 text-white shadow-md'
+                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Orders List */}
         <div className="space-y-4">
-          {orders.map((order) => {
+          {filteredOrders.map((order) => {
             const statusConfig = getStatusConfig(order.status);
             return (
               <div key={order.id} className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all border border-slate-100 dark:border-slate-700 relative overflow-hidden">

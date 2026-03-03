@@ -108,15 +108,11 @@ export default function ShopBookings() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-      <div className="max-w-screen-2xl mx-auto px-5 md:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Header with Image */}
         <div className="mb-8 relative">
           <div className="absolute right-0 top-0 w-64 h-64 opacity-10 pointer-events-none hidden lg:block">
-            <img 
-              src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400" 
-              alt="Calendar" 
-              className="w-full h-full object-contain"
-            />
+            
           </div>
           <div className="relative z-10">
             <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Quản lý đơn đặt lịch</h1>
@@ -165,7 +161,7 @@ export default function ShopBookings() {
           {[
             { label: 'Chờ xác nhận', value: bookings.filter((b) => b.status === 'pending').length, gradient: 'from-orange-500 to-orange-600', icon: '⏳' },
             { label: 'Đã xác nhận', value: bookings.filter((b) => b.status === 'confirmed').length, gradient: 'from-blue-500 to-blue-600', icon: '✓' },
-            { label: 'Hoàn thành', value: bookings.filter((b) => b.status === 'completed').length, gradient: 'from-green-500 to-emerald-600', icon: '✓✓' },
+            { label: 'Hoàn thành', value: bookings.filter((b) => b.status === 'completed').length, gradient: 'from-green-500 to-emerald-600', icon: '✓' },
             { label: 'Tổng đơn', value: bookings.length, gradient: 'from-purple-500 to-purple-600', icon: '📋' },
           ].map((stat) => (
             <div key={stat.label} className="group bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all border border-slate-100 dark:border-slate-700 relative overflow-hidden">
@@ -272,7 +268,7 @@ export default function ShopBookings() {
                         onClick={() => handleUpdateStatus(booking.id, 'completed')}
                         className="px-4 py-2.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all"
                       >
-                        ✓✓ Hoàn thành
+                        ✓ Hoàn thành
                         </button>
                     )}
                     <button className="px-4 py-2.5 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">

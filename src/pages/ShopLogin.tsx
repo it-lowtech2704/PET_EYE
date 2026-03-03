@@ -160,7 +160,7 @@ export default function ShopLogin() {
             </div>
             
             <div className="text-center">
-              <Link to="/login" className="text-sm text-slate-500 hover:text-slate-700 flex items-center justify-center gap-2">
+              <Link to="/login" className="text-sm text-slate-500 hover:text-slate-700 flex items-center justify-center gap-2 font-bold">
                 ← Đăng nhập với tư cách khách hàng
               </Link>
             </div>

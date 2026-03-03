@@ -182,15 +182,11 @@ export default function ShopServices() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-      <div className="max-w-screen-2xl mx-auto px-5 md:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Header with Image */}
         <div className="flex items-center justify-between mb-8 relative">
           <div className="absolute right-0 top-0 w-64 h-64 opacity-10 pointer-events-none hidden lg:block">
-            <img 
-              src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400" 
-              alt="Services" 
-              className="w-full h-full object-contain"
-            />
+            
           </div>
           <div className="relative z-10">
             <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Quản lý dịch vụ</h1>

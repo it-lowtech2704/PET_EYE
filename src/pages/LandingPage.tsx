@@ -29,8 +29,10 @@ export default function Home() {
               </div>
               <h1 className="text-slate-900 dark:text-white text-5xl md:text-6xl font-black leading-[1.1] tracking-tight">
                 Tìm kiếm &amp; Đặt lịch <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">cơ sở thú y uy tín</span>
-                nhất gần bạn
+                {/* <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary pr-2">cơ sở thú y <br/> </span> */}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary pr-2">  cơ sở thú y uy tín<br />
+                  gần bạn
+                  <br /> </span>
               </h1>
               <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-xl">
                 Kết nối ngay với hàng ngàn phòng khám, spa và dịch vụ lưu trú chất lượng cao. So sánh giá, xem đánh giá thực tế và đặt lịch chỉ trong vài giây.
@@ -125,7 +127,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16 space-y-4 max-w-2xl mx-auto">
             <h2 className="text-primary font-bold tracking-widest uppercase text-sm bg-primary/10 w-fit mx-auto px-3 py-1 rounded-full">Gợi ý hàng đầu</h2>
-            <h3 className="text-slate-900 dark:text-white text-4xl md:text-5xl font-black tracking-tight">Cơ sở thú y &amp; Dịch vụ <br /><span className="text-primary">được yêu thích nhất</span></h3>
+            <h3 className="text-slate-900 dark:text-white text-4xl md:text-5xl font-black tracking-tight leading-tight ">Cơ sở thú y &amp; Dịch vụ <br /><span className="text-transparent 
+                 bg-clip-text 
+                 bg-gradient-to-r 
+                 from-primary 
+                 to-secondary">
+              được yêu thích nhất
+            </span></h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8"><div className="md:col-span-2 group cursor-pointer relative overflow-hidden rounded-3xl h-[500px]"><img alt="Clinic Main" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6oXx_u1YVkdtHjYoh6Uu-kfGetga5JcROKee0xBg0hPSb0nHqmv9q1JJu8YROnoKvG5Rd_bysvhxgJTHT8gH8C1Llbpf5--FuheT1Dc9hv4rtG8lTcWHtEGUjbj2MpdlQP2hpldAuE40DUdWZ5Z7eM4tObng5CiSzz7ne0hg8w9405R8Wc2x5clkCvRirQBvDr-ensgay-LOftIuu8I5VwOc7-thTZBLPKZN7Bm_3uz0oHqruBNy2vs0BxZyVnMQweUikfcPmoio6" /><div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div><div className="absolute bottom-8 left-8 text-white"><h4 className="text-2xl font-bold mb-2">Phòng khám PetCare Center</h4><p className="flex items-center gap-2 text-sm opacity-90"><span className="material-symbols-outlined text-sm">location_on</span> Quận 3, TP.HCM</p></div><div className="absolute top-6 left-6 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-primary text-xs font-bold">Nổi bật</div><div className="absolute top-6 right-6 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg"><span className="material-symbols-outlined text-sm">videocam</span> LIVE CAM</div></div><div className="flex flex-col gap-8"><div className="group cursor-pointer relative overflow-hidden rounded-3xl h-[234px]"><img alt="Spa" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvn1YtjFBMSi4BphgW3hjCSM6BCxf1oce1KeKpXttIwyWe48GkVnDpaLzr_bNQaMzsvLy5p2nPC9HmtWou4i3TVlf_Nelmpv5cNPy104dfmz7Rl95wzFUKvCtsoUl1DpmVw5daIRIyBCWWTUR0uGC1J_e6BZxYxOYJpXgBLI88T7WZ9-2H6HRISfkBhXXtPLueH3-WefnxIcv9glH9oUKN8KkpTYnRgRhevVVNoHGtPeaU6uk6xH4Lv3anZqKWG7UIks1wxxFzj8PR" /><div className="absolute inset-0 bg-black/20"></div><div className="absolute bottom-6 left-6 text-white"><h4 className="text-lg font-bold">Happy Paws Spa</h4></div></div><div className="group cursor-pointer relative overflow-hidden rounded-3xl h-[234px]"><img alt="Saigon Vet" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsGAK-5F_vJwGvWXgRo6_kZwaYacit8LWb4QQfRBlZGt_wA_cq9gJFqPZdsR9mlQuErE2dFpjpOMLfBvr1BNomlaCYcq4Tw9HEfWScR2Vrx6C8qOfhNv69Ase7UkBfozjR-LpeW-k6RCQfzqP90asSMtvCppGS7_nktV4ODNBXx12BlIb3NrwIgAVMWGPgQ5-bDty1cGAbHN4Nhc3gdQVbyPo2U9Hw6aJNN80N-7TEqIvc8U_dv7QAK3L7yCYDWz6_RhmhFzeL0Vhn" /><div className="absolute inset-0 bg-black/20"></div><div className="absolute bottom-6 left-6 text-white"><h4 className="text-lg font-bold">Saigon Vet Hospital</h4></div></div></div></div>
           <div className="mt-12 text-center">
@@ -224,7 +232,9 @@ export default function Home() {
       <section className="px-6 md:px-12 lg:px-20 py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24 space-y-4">
-            <h2 className="text-slate-900 dark:text-white text-4xl font-bold">Quy trình kết nối</h2>
+            <h3 className="text-4xl md:text-5xl font-black  leading-tight md:leading-[1.3] text-transparent bg-clip-text bg-gradient-to-r from-black to-secondary ">
+              Quy trình kết nối
+            </h3>
             <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-lg">Cách Peteye kết nối bạn với dịch vụ tốt nhất</p>
           </div>
           <div className="relative grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -275,8 +285,10 @@ export default function Home() {
       <section id="ly-do" className="bg-primary/5 dark:bg-slate-900/80 px-6 md:px-12 lg:px-20 py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-slate-900 dark:text-white text-3xl md:text-4xl font-bold mb-4">Tại sao chọn Peteye?</h2>
-            <p className="text-slate-500 dark:text-slate-400">Giá trị mang lại cho cả hai phía</p>
+            <h3 className="text-4xl md:text-5xl font-black  leading-tight md:leading-[1.3] text-transparent bg-clip-text bg-gradient-to-r from-black to-secondary mb-3 ">
+              Tại sao chọn Peteye?
+            </h3>
+            <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-lg">Giá trị mang lại cho cả hai phía</p>
           </div>
           <div className="grid md:grid-cols-2 gap-12">
             <div className="bg-white dark:bg-card-dark p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 relative overflow-hidden">
@@ -350,15 +362,20 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight text-slate-900 dark:text-white">Cộng đồng yêu thú cưng <br /><span className="text-primary">tin tưởng chúng tôi</span></h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight text-slate-900 dark:text-white italic ">Cộng đồng yêu thú cưng  <br /><span className="text-primary text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">tin tưởng chúng tôi</span></h2>
               <div className="space-y-6">
                 <div className="bg-slate-50 dark:bg-card-dark p-8 rounded-3xl shadow-soft hover:shadow-hover transition-all duration-300 relative group">
                   <span className="absolute top-8 left-6 text-6xl text-primary/10 font-serif leading-none">"</span>
                   <div className="relative z-10 pl-6">
                     <p className="text-slate-600 dark:text-slate-300 mb-6 text-lg italic leading-relaxed">"Tìm được phòng khám 24/7 ngay gần nhà lúc nửa đêm nhờ Peteye. Ứng dụng cứu cánh thực sự cho những người nuôi mèo như mình."</p>
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-full bg-slate-300 border-2 border-primary"></div>
-                      <div>
+                      <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary shadow-md">
+                        <img
+                          src="https://i.pravatar.cc/150?img=5"
+                          alt="Minh Anh"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>                      <div>
                         <h5 className="font-bold text-slate-900 dark:text-white">Minh Anh</h5>
                         <p className="text-xs text-slate-500 font-semibold uppercase tracking-wide">Chủ nuôi Mèo</p>
                       </div>
@@ -377,8 +394,13 @@ export default function Home() {
                   <div className="relative z-10 pl-6">
                     <p className="text-slate-600 dark:text-slate-300 mb-6 text-lg italic leading-relaxed">"Hệ thống quản lý lịch hẹn của Peteye giúp phòng khám của tôi giảm thiểu tình trạng khách quên lịch và tối ưu hóa thời gian làm việc."</p>
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-full bg-slate-300 border-2 border-secondary"></div>
-                      <div>
+                      <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-secondary shadow-md">
+                        <img
+                          src="https://randomuser.me/api/portraits/men/32.jpg"
+                          alt="Doctor Hoàng Nam"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>                      <div>
                         <h5 className="font-bold text-slate-900 dark:text-white">Dr. Hoàng Nam</h5>
                         <p className="text-xs text-slate-500 font-semibold uppercase tracking-wide">Phòng khám PetHealth</p>
                       </div>

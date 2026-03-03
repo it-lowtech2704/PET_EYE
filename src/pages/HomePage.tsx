@@ -112,10 +112,9 @@ export default function HomePage() {
                     </div>
                 </div>
             </div> */}
-
             {/* Header */}
             <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-700">
-                <div className="container mx-auto px-4 py-4">
+                <div className="max-w-7xl mx-auto px-4 py-4">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         {/* Logo */}
                         <Link to="/home" className="flex-shrink-0">
@@ -141,39 +140,39 @@ export default function HomePage() {
                         {/* Nav + Auth */}
                         <div className="flex items-center gap-3 text-sm font-semibold">
                             {user ? (
-                                    <div className="flex items-center gap-3">
-                                        <Link to="/profile" className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1.5 hover:bg-primary/10 transition-colors">
-                                            <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">
-                                                {user.name.charAt(0).toUpperCase()}
-                                            </div>
-                                            <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 max-w-[100px] truncate">
-                                                {user.name}
-                                            </span>
-                                        </Link>
-                                        <button
-                                            onClick={handleLogout}
-                                            className="px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1"
-                                        >
-                                            <span className="material-symbols-outlined text-lg">logout</span>
-                                            <span className="hidden sm:inline">Đăng xuất</span>
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <Link
-                                        to="/login"
-                                        className="px-5 py-2 bg-primary text-white rounded-full hover:bg-blue-800 shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-sm"
-                                    >
-                                        <span className="material-symbols-outlined text-lg">login</span>
-                                        <span>Đăng nhập</span>
+                                <div className="flex items-center gap-3">
+                                    <Link to="/profile" className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1.5 hover:bg-primary/10 transition-colors">
+                                        <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">
+                                            {user.name.charAt(0).toUpperCase()}
+                                        </div>
+                                        <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 max-w-[100px] truncate">
+                                            {user.name}
+                                        </span>
                                     </Link>
-                                )}
+                                    <button
+                                        onClick={handleLogout}
+                                        className="px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1"
+                                    >
+                                        <span className="material-symbols-outlined text-lg">logout</span>
+                                        <span className="hidden sm:inline">Đăng xuất</span>
+                                    </button>
+                                </div>
+                            ) : (
+                                <Link
+                                    to="/login"
+                                    className="px-5 py-2 bg-primary text-white rounded-full hover:bg-blue-800 shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-sm"
+                                >
+                                    <span className="material-symbols-outlined text-lg">login</span>
+                                    <span>Đăng nhập</span>
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
             </header>
 
             {/* Hero Section */}
-            <section className="relative pt-12 pb-24 overflow-hidden bg-gradient-to-b from-blue-50/70 to-transparent dark:from-slate-900 dark:to-slate-900">
+            <section className="relative pt-12 pb-24 overflow-hidden bg-gradient-to-b from-blue-50/70 to-transparent dark:from-slate-900 dark:to-slate-900 px-6 md:px-12 lg:px-20">
                 {/* Paw pattern background */}
                 <div
                     className="absolute inset-0 opacity-30 pointer-events-none"
@@ -181,7 +180,7 @@ export default function HomePage() {
                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231E40AF' fill-opacity='0.08' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")`,
                     }}
                 />
-                <div className="container mx-auto px-4 relative z-10">
+                <div className="max-w-7xl mx-auto relative z-10">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                         {/* Text */}
                         <div className="md:w-1/2 space-y-6">
@@ -191,7 +190,7 @@ export default function HomePage() {
                             </div>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-slate-800 dark:text-white leading-tight">
                                 Chăm sóc thú cưng <br />
-                                <span className="text-primary">dễ dàng hơn</span> cùng Peteye
+                                <span className="text-primary text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">dễ dàng hơn cùng Peteye</span> 
                             </h1>
                             <p className="text-lg text-slate-600 dark:text-slate-300 md:pr-10 leading-relaxed">
                                 Kết nối ngay với hàng ngàn bác sĩ thú y, spa, và cửa hàng thú cưng uy tín. Chúng tôi
@@ -276,15 +275,15 @@ export default function HomePage() {
             </section>
 
             {/* Services Section */}
-            <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
-                <div className="container mx-auto px-4">
+            <section className="py-24 bg-slate-50 dark:bg-slate-900/50 px-6 md:px-12 lg:px-20">
+                <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <span className="text-primary font-bold tracking-wider uppercase text-sm bg-primary/10 px-4 py-1.5 rounded-full inline-block mb-4">
                             Dịch vụ Peteye
                         </span>
-                        <h2 className="text-4xl font-display font-black text-slate-800 dark:text-white mt-2">
+                        <h3 className="text-4xl md:text-5xl font-black  leading-tight md:leading-[1.3] text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-3 ">
                             Giải pháp toàn diện
-                        </h2>
+                        </h3>
                         <p className="text-slate-500 dark:text-slate-400 mt-4 max-w-2xl mx-auto">
                             Hệ sinh thái dịch vụ đa dạng, đáp ứng mọi nhu cầu chăm sóc sức khỏe và làm đẹp cho thú cưng của bạn.
                         </p>
@@ -346,8 +345,8 @@ export default function HomePage() {
             </section>
 
             {/* Promotional Banners */}
-            <section className="py-16 px-4 bg-white dark:bg-slate-800/20">
-                <div className="container mx-auto">
+            <section className="py-16 bg-white dark:bg-slate-800/20 px-6 md:px-12 lg:px-20">
+                <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {/* Live Camera Banner */}
                         <div className="md:col-span-2 relative h-[300px] rounded-2xl overflow-hidden group bg-blue-100 dark:bg-blue-900/40">
@@ -432,14 +431,14 @@ export default function HomePage() {
             </section>
 
             {/* Features Section */}
-            <section className="py-20 bg-white dark:bg-slate-900 relative overflow-hidden">
+            <section className="py-20 bg-white dark:bg-slate-900 relative overflow-hidden px-6 md:px-12 lg:px-20">
                 <div className="absolute top-10 right-10 opacity-5 text-primary rotate-12">
                     <span className="material-symbols-outlined text-9xl">pets</span>
                 </div>
                 <div className="absolute bottom-10 left-10 opacity-5 text-primary -rotate-12">
                     <span className="material-symbols-outlined text-9xl">pets</span>
                 </div>
-                <div className="container mx-auto px-4">
+                <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col lg:flex-row items-center gap-16">
                         {/* Image */}
                         <div className="lg:w-1/2 relative">
@@ -468,11 +467,9 @@ export default function HomePage() {
 
                         {/* Content */}
                         <div className="lg:w-1/2">
-                            <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-800 dark:text-white mb-6 leading-snug">
-                                Giúp thú cưng của bạn <br />
-                                <span className="text-primary decoration-wavy underline decoration-blue-300">
-                                    khỏe mạnh hơn
-                                </span>
+                            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4 ">
+                               Giúp thú cưng của bạn <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">khỏe mạnh hơn</span>
                             </h2>
                             <p className="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
                                 Peteye không chỉ là nơi kết nối, mà là hệ sinh thái chăm sóc sức khỏe và đời sống
@@ -530,15 +527,15 @@ export default function HomePage() {
             </section>
 
             {/* Hot Deals Section */}
-            <section className="py-16 relative bg-slate-50 dark:bg-slate-900/50">
-                <div className="container mx-auto px-4 relative z-10">
+            <section className="py-16 relative bg-slate-50 dark:bg-slate-900/50 px-6 md:px-12 lg:px-20">
+                <div className="max-w-7xl mx-auto relative z-10">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
                         <div>
                             <span className="text-sm flex items-center gap-2 font-bold">
                                 <span className="material-symbols-outlined animate-pulse text-amber-500">bolt</span>
                                 <span className="text-amber-600 dark:text-amber-400">Ưu đãi giờ vàng</span>
                             </span>
-                            <h2 className="text-3xl font-display font-bold text-slate-800 dark:text-white mt-2">
+                            <h2 className="text-3xl font-display font-bold text-slate-800 dark:text-white mt-2 italic text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
                                 Deal Hot Hôm Nay
                             </h2>
                         </div>

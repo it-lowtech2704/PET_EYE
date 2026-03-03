@@ -28,7 +28,7 @@ const CLINICS = [
         distance: '2.8 km',
         price: 'Từ 200.000đ',
         tags: ['Khám tổng quát', 'Tiêm phòng', 'Nội soi'],
-        image: 'https://images.unsplash.com/photo-1597764690467-e56d69c74c98?q=80&w=800&auto=format&fit=crop',
+        image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=800&q=80",
         verified: true,
         badge: null,
     },
@@ -58,7 +58,7 @@ const CLINICS = [
         distance: '4.5 km',
         price: 'Từ 100.000đ',
         tags: ['Khám bệnh', 'Tiêm phòng', 'Phẫu thuật'],
-        image: 'https://images.unsplash.com/photo-1625321171394-29ef4b56f51e?q=80&w=800&auto=format&fit=crop',
+        image: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80",
         verified: true,
         badge: null,
     },
@@ -73,7 +73,7 @@ const CLINICS = [
         distance: '2.0 km',
         price: 'Từ 200.000đ/ngày',
         tags: ['Lưu trú', 'Camera live', 'Chăm sóc 24/7'],
-        image: 'https://images.unsplash.com/photo-1601758174184-07ba1e5b0a7a?q=80&w=800&auto=format&fit=crop',
+        image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=80",
         verified: true,
         badge: 'Mới',
     },
@@ -173,8 +173,8 @@ export default function VetSearch() {
                             key={type}
                             onClick={() => setActiveService(type)}
                             className={`px-5 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all border ${activeService === type
-                                    ? 'bg-[#1a2b4c] text-white border-[#1a2b4c] shadow-md'
-                                    : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-[#1a2b4c] hover:text-[#1a2b4c]'
+                                ? 'bg-[#1a2b4c] text-white border-[#1a2b4c] shadow-md'
+                                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-[#1a2b4c] hover:text-[#1a2b4c]'
                                 }`}
                         >
                             {type}
@@ -283,8 +283,8 @@ export default function VetSearch() {
                                             key={r}
                                             onClick={() => setMinRating(r)}
                                             className={`flex-1 py-1.5 text-xs font-semibold rounded-lg border transition-colors ${minRating === r
-                                                    ? 'bg-amber-50 border-amber-400 text-amber-700'
-                                                    : 'border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-amber-300'
+                                                ? 'bg-amber-50 border-amber-400 text-amber-700'
+                                                : 'border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-amber-300'
                                                 }`}
                                         >
                                             {r === 0 ? 'Tất cả' : `${r}★`}
@@ -358,8 +358,8 @@ export default function VetSearch() {
                                     <button
                                         onClick={() => setViewMode('list')}
                                         className={`p-1.5 rounded-lg transition-colors ${viewMode === 'list'
-                                                ? 'bg-[#1a2b4c] text-white'
-                                                : 'text-slate-400 hover:text-slate-600'
+                                            ? 'bg-[#1a2b4c] text-white'
+                                            : 'text-slate-400 hover:text-slate-600'
                                             }`}
                                     >
                                         <span className="material-symbols-outlined text-base">view_list</span>
@@ -367,8 +367,8 @@ export default function VetSearch() {
                                     <button
                                         onClick={() => setViewMode('grid')}
                                         className={`p-1.5 rounded-lg transition-colors ${viewMode === 'grid'
-                                                ? 'bg-[#1a2b4c] text-white'
-                                                : 'text-slate-400 hover:text-slate-600'
+                                            ? 'bg-[#1a2b4c] text-white'
+                                            : 'text-slate-400 hover:text-slate-600'
                                             }`}
                                     >
                                         <span className="material-symbols-outlined text-base">grid_view</span>
@@ -434,8 +434,8 @@ export default function VetSearch() {
                                         <div className="flex items-center gap-4 text-sm">
                                             <span
                                                 className={`flex items-center gap-1 font-semibold text-xs px-2 py-1 rounded-full ${clinic.isOpen
-                                                        ? 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
-                                                        : 'bg-slate-100 text-slate-500 dark:bg-slate-700'
+                                                    ? 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
+                                                    : 'bg-slate-100 text-slate-500 dark:bg-slate-700'
                                                     }`}
                                             >
                                                 <span className={`w-1.5 h-1.5 rounded-full ${clinic.isOpen ? 'bg-green-500' : 'bg-slate-400'}`} />
