@@ -17,7 +17,6 @@ import ShopBookings from './pages/shop/ShopBookings';
 import ShopServices from './pages/shop/ShopServices';
 import ShopCustomers from './pages/shop/ShopCustomers';
 import ShopProfile from './pages/shop/ShopProfile';
-import ShopReports from './pages/shop/ShopReports';
 import ShopCamera from './pages/shop/ShopCamera';
 import ShopMessages from './pages/shop/ShopMessages';
 import Profile, { ProfileLayout } from './pages/Profile';
@@ -82,7 +81,6 @@ function AppLayout() {
             <Route path="customers" element={<ShopCustomers />} />
             <Route path="camera" element={<ShopCamera />} />
             <Route path="messages" element={<ShopMessages />} />
-            <Route path="reports" element={<ShopReports />} />
             <Route path="profile" element={<ShopProfile />} />
           </Route>
           {/* profile area with persistent sidebar */}

@@ -39,7 +39,6 @@ export default function ShopNavbar() {
     { label: 'Camera', path: '/shop/camera', icon: <Video className="w-4 h-4" /> },
     { label: 'Tin nhắn', path: '/shop/messages', icon: <MessageCircle className="w-4 h-4" /> },
     { label: 'Khách hàng', path: '/shop/customers', icon: <UsersIcon className="w-4 h-4" /> },
-    { label: 'Báo cáo', path: '/shop/reports', icon: <BarChart3 className="w-4 h-4" /> },
   ];
 
   const isActive = (path: string) => location.pathname === path;
